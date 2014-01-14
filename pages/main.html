@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Виджеты</title>
+		<link rel="stylesheet" type="text/css" href="../_skins/Ken/all.css">
+		<script type='text/javascript' src='../_skins/Ken/all.js'></script>
+		<script type="text/javascript">
+	/******************************** SelectThemeChooser *****************************/
+	var SelectThemeChooser;
+
+	SelectThemeChooser = get_global_setting("kendoSkin", "silver");
+	$('link[rel*=style][title]').each(function (i) {
+		this.disabled = true;
+		if (this.getAttribute('title') === SelectThemeChooser) {this.disabled = false; }
+	});
+	/************************************************************************************/
+			var session = top.session;
+			// var guid = kendo.guid ();
+
+			kendo.culture("ru-RU");
+
+			function add_window (i, w) {
+
+				if (!w.href) w.href = w.name + '.html';
+				var id_widget = w.name || w.href.match(/(\w+)\.htm/)[1];
+				if (!w.minHeight) w.minHeight = 260;
+				if (!w.winWidth)  w.winWidth  = 600;
+
+				var separator = w.href.indexOf('?') == -1? '?' : '&';
+				w.href += separator + 'sid=' + session.id;
+				$('<div id="' + id_widget + '" class="window_iframe"></div>').appendTo ('#div_widget').kendoWindow ({
+					actions: ["Refresh", "Maximize", "Minimize"],
+					height : get_widget_setting (id_widget, "height", "300px"),
+					width  : get_widget_setting (id_widget, "width", "600px"),
+					minHeight: w.minHeight,
+					minWidth: w.winWidth,
+					title  : w.label,
+					iframe : true,
+					content: w.href,
+					resize : function(e){
+						this.wrapper.find('iframe').contents().find("#div_widget").css({'height': this.wrapper.height() - 5});
+
+						var state = get_widget_setting (id_widget, "state", "restore");
+						if (state !== "restore") {
+							return;
+						}
+						var widget = e.sender.element.data("kendoWindow");
+						var wrapper = widget.wrapper;
+						save_widget_setting(id_widget, "height", wrapper.css("height"));
+						save_widget_setting(id_widget, "width", wrapper.css("width"));
+					},
+					dragend : function (e) {
+						var position = e.sender.element.data("kendoWindow").wrapper.offset();
+						save_widget_setting(id_widget, "top", position.top + "px");
+						save_widget_setting(id_widget, "left", position.left + "px");
+					}
+				})
+				.data("kendoWindow").wrapper.css({
+					left : get_widget_setting (id_widget, "left", "10px"),
+					top  : get_widget_setting (id_widget, "top", (10 + 35 * i) + "px"),
+				});
+
+				var state = get_widget_setting (id_widget, "state", "restore");
+				change_widget_state (id_widget, state);
+			}
+
+			function save_widget_setting (id_widget, name, value) {
+				return set_global_setting(get_id_tab () + '_' + id_widget + '_' + name, value);
+			}
+
+			function get_widget_setting (id_widget, name, default_value) {
+				return get_global_setting (get_id_tab () + '_' + id_widget + '_' + name, default_value);
+			}
+
+			function get_id_tab () {
+				return window.frameElement.getAttribute('data-id-tab');
+			}
+
+			function attach_state_handler() {
+				$(".k-window-action").on("mousedown", function(e) {
+
+					var id_widget = $(this).closest(".k-window").children(".k-window-content").attr("id");
+					var is_minimize_button = $(this).children(".k-icon").hasClass("k-i-minimize");
+					var is_maximize_button = $(this).children(".k-icon").hasClass("k-i-maximize");
+					var is_restore_button = $(this).children(".k-icon").hasClass("k-i-restore");
+
+					if (is_minimize_button) {
+						change_widget_state(id_widget, "minimized");
+					} else if (is_maximize_button) {
+						change_widget_state(id_widget, "maximized");
+					} else if (is_restore_button) {
+						change_widget_state(id_widget, "restore");
+					}
+				});
+			}
+
+			function change_widget_state(id_widget, state) {
+
+				var widget = $('#' + id_widget).data("kendoWindow");
+
+				switch (state) {
+					case "maximized":
+						save_widget_setting(id_widget, "state", "maximized");
+						widget.maximize();
+						break;
+					case "minimized":
+						save_widget_setting(id_widget, "state", "minimized");
+						widget.minimize();
+						break;
+					case "restore":
+						save_widget_setting(id_widget, "state", "restore");
+						widget.restore();
+						break;
+				}
+			}
+
+			$(document).ready(function() {
+
+				session.query ({type: 'widgets', __only_json : 1, id_tab: get_id_tab () }, function (data) {
+					var ws = data.content;
+					for (var i = 0; i < ws.length; i ++) {
+						add_window (i, ws [i]);
+					}
+
+					attach_state_handler();
+				});
+
+			})
+
+		</script>
+
+	</head>
+	<body class="refer" style="background-image: none;">
+		<div id="div_widget" class="k-widget" style="border-width: 0px;">
+		</div>
+	</body>
+</html>

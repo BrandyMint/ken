@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Система управления предприятием «Eluda»</title><!-- 2012.2.913 # 2012.3.1114 -->
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="../styles/kendo.common.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/icons.css">
+	<link rel="stylesheet" type="text/css" href="../css/templates.css">
+	<link rel="stylesheet" href="../css/jquery-ui-1.10.0.custom.min.css" />
+	<link rel="stylesheet" type="text/css" title="silver" href="../styles/kendo.silver.min.css">
+	<link rel="alternate stylesheet" type="text/css" title="black" href="../styles/kendo.black.min.css">
+	<link rel="alternate stylesheet" type="text/css" title="blueopal" href="../styles/kendo.blueopal.min.css">
+	<link rel="alternate stylesheet" type="text/css" title="default" href="../styles/kendo.default.min.css">
+	<link rel="alternate stylesheet" type="text/css" title="metro" href="../styles/kendo.metro.min.css">
+	<style>
+		.k-window, .k-window.k-state-focused  {-webkit-box-shadow: none; box-shadow: none;}
+		.window_iframe{padding: 0px!important;overflow: hidden!important;}
+	</style>
+	<script type='text/javascript' src='../js/2012.3.1114/jquery.min.js'></script>
+	<script type='text/javascript' src="../js/2012.3.1114/kendo.all.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.disable.text.select.js"></script>
+
+	<script src="../js/cultures/kendo.culture.ru-RU.js"></script>
+<script type="text/javascript">
+kendo.culture("ru-RU");
+</script>
+</head>
+<body class="refer">
+
+<div id="div_widget">
+<div id="news" class="window_iframe"></div>
+<div id="msgs" class="window_iframe"></div>
+<div id="tasks" class="window_iframe"></div>
+<div id="task_stats_widget" class="window_iframe"></div>
+<div id="favorites" class="window_iframe"></div>
+<div id="sale" class="window_iframe"></div>
+</div>
+
+<script>
+	/******************************** SelectThemeChooser *****************************/
+	var SelectThemeChooser;
+	window.set_global_setting = function(name, value) {
+
+		try {
+			localStorage.setItem(name, value);
+		} catch (err) {debugger;};
+	}
+	window.get_global_setting = function(name, default_value) {
+
+		var value;
+		try {
+			value = localStorage.getItem(name);
+		} catch (err) {debugger;};
+		value = value || default_value;
+
+		set_global_setting(name, value);
+
+		return value;
+	}
+
+	SelectThemeChooser = get_global_setting("kendoSkin", "silver");
+	$('link[rel*=style][title]').each(function (i) {
+		this.disabled = true;
+		if (this.getAttribute('title') === SelectThemeChooser) {this.disabled = false; }
+	});
+	/************************************************************************************/
+	var window_state_news = get_global_setting("window_state_news", "600px|369px|10px|15px|min").split("|");
+	var widgetnews = $("#news").kendoWindow({
+		actions: ["Refresh", "Minimize", "Maximize","Close"],
+		width: window_state_news[0],
+		minWidth: 575,
+		minHeight: 157,
+		height: window_state_news[1],
+		title: "Новости",
+		iframe: true,
+		content: "news.html",
+		dragend: function(e){
+			set_global_setting("window_state_news", window_state_news[0] +"|"+ window_state_news[1]+"|"+ this.wrapper.position().top +"px|"+ this.wrapper.position().left +"px|" + window_state_news[4]);
+		},
+		resize: function(e){
+			var w_width, w_height;
+			this.wrapper.find('iframe').contents().find(".k-grid-content").css({'height': this.wrapper.height() - 69});
+			if(this.wrapper.width() !== 0){ w_width = this.wrapper.width() + "px"; } else { w_width = window_state_news[0];}
+			if(this.wrapper.height() !== 0){ w_height = this.wrapper.height() + "px"; } else {w_height = window_state_news[1];}
+			set_global_setting("window_state_news",  w_width + "|"+ w_height +"|"+ window_state_news[2]+"|"+ window_state_news[3]+"|" + window_state_news[4]);
+		}
+	}).data("kendoWindow");
+	widgetnews.wrapper.css({left: window_state_news[3], top: window_state_news[2]});
+	if(window_state_news[4] === "min") {widgetnews.minimize();}
+	widgetnews.wrapper.find(".k-icon").click(function(e) {
+		if ($(this).hasClass("k-i-minimize")){
+			window_state_news[4] = "min";
+			set_global_setting("window_state_news", window_state_news[0] + "|" + window_state_news[1] + "|" + window_state_news[2] + "|" + window_state_news[3] + "|" + window_state_news[4]);
+		} else if ($(this).hasClass("k-i-restore")){
+			window_state_news[4] = "max";
+			set_global_setting("window_state_news", window_state_news[0] + "|" + window_state_news[1] + "|" + window_state_news[2] + "|" + window_state_news[3] + "|" + window_state_news[4]);
+		}
+	});
+	function windiwheightnews (){
+		return  widgetnews.wrapper.height();
+	}
+	function windiwtitlenews (vartitle){
+		widgetnews.title(vartitle);
+	}
+	/************************************************************************************/
+	var window_state_msgs = get_global_setting("window_state_msgs", "600px|369px|45px|15px|min").split("|");
+	var widgetmsgs = $("#msgs").kendoWindow({
+		actions: ["Refresh", "Minimize", "Maximize","Close"],
+		width: window_state_msgs[0],
+		minWidth: 575,
+		minHeight: 160,
+		height: window_state_msgs[1],
+		title: "Переписка/напоминания",
+		iframe: true,
+		content: "msgs.html",
+		dragend: function(e){
+			set_global_setting("window_state_msgs", window_state_msgs[0] +"|"+ window_state_msgs[1]+"|"+ this.wrapper.position().top +"px|"+ this.wrapper.position().left +"px|" + window_state_msgs[4]);
+		},
+		resize: function(e){
+			var w_width, w_height;
+			this.wrapper.find('iframe').contents().find(".k-grid-content").css({'height': this.wrapper.height() - 69});
+			if(this.wrapper.width() !== 0){ w_width = this.wrapper.width() + "px"; } else { w_width = window_state_msgs[0];}
+			if(this.wrapper.height() !== 0){ w_height = this.wrapper.height() + "px"; } else {w_height = window_state_msgs[1];}
+			set_global_setting("window_state_msgs",  w_width + "|"+ w_height +"|"+ window_state_msgs[2]+"|"+ window_state_msgs[3]+"|" + window_state_msgs[4]);
+		}
+	}).data("kendoWindow");
+	widgetmsgs.wrapper.css({left: window_state_msgs[3], top: window_state_msgs[2]});
+	if(window_state_msgs[4] === "min") {widgetmsgs.minimize();}
+	widgetmsgs.wrapper.find(".k-icon").click(function(e) {
+		if ($(this).hasClass("k-i-minimize")){
+			window_state_msgs[4] = "min";
+			set_global_setting("window_state_msgs", window_state_msgs[0] + "|" + window_state_msgs[1] + "|" + window_state_msgs[2] + "|" + window_state_msgs[3] + "|" + window_state_msgs[4]);
+		} else if ($(this).hasClass("k-i-restore")){
+			window_state_msgs[4] = "max";
+			set_global_setting("window_state_msgs", window_state_msgs[0] + "|" + window_state_msgs[1] + "|" + window_state_msgs[2] + "|" + window_state_msgs[3] + "|" + window_state_msgs[4]);
+		}
+	});
+	function windiwheightmsgs (){
+		return  widgetmsgs.wrapper.height();
+	}
+	function windiwtitlemsgs (vartitle){
+		widgetmsgs.title(vartitle);
+	}
+	/************************************************************************************/
+	var window_state_tasks = get_global_setting("window_state_tasks", "600px|369px|80px|15px|min").split("|");
+	var widgettasks = $("#tasks").kendoWindow({
+		actions: ["Refresh", "Minimize", "Maximize","Close"],
+		width: window_state_tasks[0],
+		minWidth: 500,
+		minHeight: 150,
+		height: window_state_tasks[1],
+		title: "На исполнение",
+		iframe: true,
+		content: "tasks.html",
+		dragend: function(e){
+			set_global_setting("window_state_tasks", window_state_tasks[0] +"|"+ window_state_tasks[1]+"|"+ this.wrapper.position().top +"px|"+ this.wrapper.position().left +"px|" + window_state_tasks[4]);
+		},
+		resize: function(e){
+			var w_width, w_height;
+			this.wrapper.find('iframe').contents().find(".k-grid-content").css({'height': this.wrapper.height() - 69});
+			if(this.wrapper.width() !== 0){ w_width = this.wrapper.width() + "px"; } else { w_width = window_state_tasks[0];}
+			if(this.wrapper.height() !== 0){ w_height = this.wrapper.height() + "px"; } else {w_height = window_state_tasks[1];}
+			set_global_setting("window_state_tasks",  w_width + "|"+ w_height +"|"+ window_state_tasks[2]+"|"+ window_state_tasks[3]+"|" + window_state_tasks[4]);
+		}
+	}).data("kendoWindow");
+	widgettasks.wrapper.css({left: window_state_tasks[3], top: window_state_tasks[2]});
+	if(window_state_tasks[4] === "min") {widgettasks.minimize();}
+	widgettasks.wrapper.find(".k-icon").click(function(e) {
+		if ($(this).hasClass("k-i-minimize")){
+			window_state_tasks[4] = "min";
+			set_global_setting("window_state_tasks", window_state_tasks[0] + "|" + window_state_tasks[1] + "|" + window_state_tasks[2] + "|" + window_state_tasks[3] + "|" + window_state_tasks[4]);
+		} else if ($(this).hasClass("k-i-restore")){
+			window_state_tasks[4] = "max";
+			set_global_setting("window_state_tasks", window_state_tasks[0] + "|" + window_state_tasks[1] + "|" + window_state_tasks[2] + "|" + window_state_tasks[3] + "|" + window_state_tasks[4]);
+		}
+	});
+	function windiwheighttasks (){
+		return  widgettasks.wrapper.height();
+	}
+	function windiwtitletasks (vartitle){
+		widgettasks.title(vartitle);
+	}
+	/************************************************************************************/
+	var window_state_task_stats_widget = get_global_setting("window_state_task_stats_widget", "600px|369px|115px|15px|min").split("|");
+	var widgettask_stats_widget = $("#task_stats_widget").kendoWindow({
+		actions: ["Refresh", "Minimize", "Maximize","Close"],
+		width: window_state_task_stats_widget[0],
+		minWidth: 500,
+		minHeight: 140,
+		height: window_state_task_stats_widget[1],
+		title: "На контроль",
+		iframe: true,
+		content: "task_stats_widget.html",
+		dragend: function(e){
+			set_global_setting("window_state_task_stats_widget", window_state_task_stats_widget[0] +"|"+ window_state_task_stats_widget[1]+"|"+ this.wrapper.position().top +"px|"+ this.wrapper.position().left +"px|" + window_state_task_stats_widget[4]);
+		},
+		resize: function(e){
+			var w_width, w_height;
+			this.wrapper.find('iframe').contents().find(".k-grid-content").css({'height': this.wrapper.height() - 69});
+			if(this.wrapper.width() !== 0){ w_width = this.wrapper.width() + "px"; } else { w_width = window_state_task_stats_widget[0];}
+			if(this.wrapper.height() !== 0){ w_height = this.wrapper.height() + "px"; } else {w_height = window_state_task_stats_widget[1];}
+			set_global_setting("window_state_task_stats_widget",  w_width + "|"+ w_height +"|"+ window_state_task_stats_widget[2]+"|"+ window_state_task_stats_widget[3]+"|" + window_state_task_stats_widget[4]);
+		}
+	}).data("kendoWindow");
+	widgettask_stats_widget.wrapper.css({left: window_state_task_stats_widget[3], top: window_state_task_stats_widget[2]});
+	if(window_state_task_stats_widget[4] === "min") {widgettask_stats_widget.minimize();}
+	widgettask_stats_widget.wrapper.find(".k-icon").click(function(e) {
+		if ($(this).hasClass("k-i-minimize")){
+			window_state_task_stats_widget[4] = "min";
+			set_global_setting("window_state_task_stats_widget", window_state_task_stats_widget[0] + "|" + window_state_task_stats_widget[1] + "|" + window_state_task_stats_widget[2] + "|" + window_state_task_stats_widget[3] + "|" + window_state_task_stats_widget[4]);
+		} else if ($(this).hasClass("k-i-restore")){
+			window_state_task_stats_widget[4] = "max";
+			set_global_setting("window_state_task_stats_widget", window_state_task_stats_widget[0] + "|" + window_state_task_stats_widget[1] + "|" + window_state_task_stats_widget[2] + "|" + window_state_task_stats_widget[3] + "|" + window_state_task_stats_widget[4]);
+		}
+	});
+	function windiwheighttask_stats_widget (){
+		return  widgettask_stats_widget.wrapper.height();
+	}
+	function windiwtitletask_stats_widget (vartitle){
+		widgettask_stats_widget.title(vartitle);
+	}
+	/************************************************************************************/
+	var window_state_favorites = get_global_setting("window_state_favorites", "600px|359px|150px|15px|min").split("|");
+	var widgetfavorites = $("#favorites").kendoWindow({
+		actions: ["Refresh", "Minimize", "Maximize","Close"],
+		width: window_state_favorites[0],
+		height: window_state_favorites[1],
+		minWidth: 580,
+		minHeight: 150,
+		title: "Избранное",
+		iframe: true,
+		content: "favorites.html",
+		dragend: function(e){
+			set_global_setting("window_state_favorites", window_state_favorites[0] +"|"+ window_state_favorites[1]+"|"+ this.wrapper.position().top +"px|"+ this.wrapper.position().left +"px|" + window_state_favorites[4]);
+		},
+		resize: function(e){
+			var w_width, w_height;
+			this.wrapper.find('iframe').contents().find("#div_widget-1").css({'height': this.wrapper.height() - 45});
+			this.wrapper.find('iframe').contents().find("#div_widget-1 iframe").contents().find(".k-grid-content").css({'height': this.wrapper.height() - 115});
+			this.wrapper.find('iframe').contents().find("#div_widget-2").css({'height': this.wrapper.height() - 45});
+			this.wrapper.find('iframe').contents().find("#div_widget-2 iframe").contents().find(".k-grid-content").css({'height': this.wrapper.height() - 115});
+			this.wrapper.find('iframe').contents().find("#div_widget-3").css({'height': this.wrapper.height() - 45});
+			this.wrapper.find('iframe').contents().find("#div_widget-3 iframe").contents().find(".k-grid-content").css({'height': this.wrapper.height() - 115});
+			this.wrapper.find('iframe').contents().find("#div_widget-4").css({'height': this.wrapper.height() - 45});
+			this.wrapper.find('iframe').contents().find("#div_widget-4 iframe").contents().find(".k-grid-content").css({'height': this.wrapper.height() - 115});
+			if(this.wrapper.width() !== 0){ w_width = this.wrapper.width() + "px"; } else { w_width = window_state_favorites[0];}
+			if(this.wrapper.height() !== 0){ w_height = this.wrapper.height() + "px"; } else {w_height = window_state_favorites[1];}
+			set_global_setting("window_state_favorites",  w_width + "|"+ w_height +"|"+ window_state_favorites[2]+"|"+ window_state_favorites[3]+"|" + window_state_favorites[4]);
+		}
+	}).data("kendoWindow");
+	widgetfavorites.wrapper.css({left: window_state_favorites[3], top: window_state_favorites[2]});
+	if(window_state_favorites[4] === "min") {widgetfavorites.minimize();}
+	widgetfavorites.wrapper.find(".k-icon").click(function(e) {
+		if ($(this).hasClass("k-i-minimize")){
+			window_state_favorites[4] = "min";
+			set_global_setting("window_state_favorites", window_state_favorites[0] + "|" + window_state_favorites[1] + "|" + window_state_favorites[2] + "|" + window_state_favorites[3] + "|" + window_state_favorites[4]);
+		} else if ($(this).hasClass("k-i-restore")){
+			window_state_favorites[4] = "max";
+			set_global_setting("window_state_favorites", window_state_favorites[0] + "|" + window_state_favorites[1] + "|" + window_state_favorites[2] + "|" + window_state_favorites[3] + "|" + window_state_favorites[4]);
+		}
+	});
+	function windiwheightfavorites (){
+		return  widgetfavorites.wrapper.height();
+	}
+	function windiwtitlefavorites (vartitle){
+		widgetfavorites.title(vartitle);
+	}
+	/************************************************************************************/
+	var window_state_sale = get_global_setting("window_state_sale", "600px|369px|185px|15px|max").split("|");
+	var widgetsale = $("#sale").kendoWindow({
+		actions: ["Refresh", "Minimize", "Close"],
+		width: window_state_sale[0],
+		minWidth: 469,
+		minHeight: 260,
+		height: window_state_sale[1],
+		title: "Продажи",
+		/*iframe: true,*/
+		content: "sale.html",
+		dragend: function(e){
+			set_global_setting("window_state_sale", window_state_sale[0] +"|"+ window_state_sale[1]+"|"+ this.wrapper.position().top +"px|"+ this.wrapper.position().left +"px|" + window_state_sale[4]);
+		},
+		resize: function(e){
+			var w_width, w_height;
+			this.wrapper.find(".k-grid-content").css({'height': this.wrapper.height() - 106});
+			this.wrapper.find(".chart").css({'height': this.wrapper.height() - 45});
+			this.wrapper.find(".setting").css({'height': this.wrapper.height() - 45});
+			/*************** iframe
+			this.wrapper.find('iframe').contents().find(".k-grid-content").css({'height': this.wrapper.height() - 106});
+			this.wrapper.find('iframe').contents().find(".chart").css({'height': this.wrapper.height() - 45});
+			this.wrapper.find('iframe').contents().find(".setting").css({'height': this.wrapper.height() - 45});
+			/*****************/
+			if(this.wrapper.width() !== 0){ w_width = this.wrapper.width() + "px"; } else { w_width = window_state_sale[0];}
+			if(this.wrapper.height() !== 0){ w_height = this.wrapper.height() + "px"; } else {w_height = window_state_sale[1];}
+			set_global_setting("window_state_sale",  w_width + "|"+ w_height +"|"+ window_state_sale[2]+"|"+ window_state_sale[3]+"|" + window_state_sale[4]);
+		}
+	}).data("kendoWindow");
+	widgetsale.wrapper.css({left: window_state_sale[3], top: window_state_sale[2]});
+	if(window_state_sale[4] === "min") {widgetsale.minimize();}
+	widgetsale.wrapper.find(".k-icon").click(function(e) {
+		if ($(this).hasClass("k-i-minimize")){
+			window_state_sale[4] = "min";
+			set_global_setting("window_state_sale", window_state_sale[0] + "|" + window_state_sale[1] + "|" + window_state_sale[2] + "|" + window_state_sale[3] + "|" + window_state_sale[4]);
+		} else if ($(this).hasClass("k-i-restore")){
+			window_state_sale[4] = "max";
+			set_global_setting("window_state_sale", window_state_sale[0] + "|" + window_state_sale[1] + "|" + window_state_sale[2] + "|" + window_state_sale[3] + "|" + window_state_sale[4]);
+		}
+	});
+	function windiwheightsale (){
+		return  widgetsale.wrapper.height();
+	}
+	function windiwtitlesale (vartitle){
+		widgetsale.title(vartitle);
+	}
+	/************************************************************************************/
+	function opentab(link, link2){
+		var linkarr = link.split('|'),
+		linkarr2 = linkarr[0].split('/');
+		window.open(linkarr2[1], '_blank');
+	}
+</script>
+</body>
+</html>

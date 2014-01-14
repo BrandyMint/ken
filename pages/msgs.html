@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Система управления предприятием «Eluda»</title>
+	<link rel="stylesheet" type="text/css" href="/i/_skins/Ken/all.css">
+	<style>
+		.k-window, .k-window.k-state-focused  {-webkit-box-shadow: none; box-shadow: none;}
+		.window_iframe{padding: 0px!important;}
+	</style>
+	<script type='text/javascript' src='/i/_skins/Ken/all.js'></script>
+
+<script type="text/javascript">
+kendo.culture("ru-RU");
+</script>
+<style>
+body, html {width:100%;height:100%;overflow: hidden;}
+/*table*/
+.k-pager-refresh {display:none;}
+.k-pager-wrap {
+height: 24px;
+overflow: hidden;
+}
+.k-toolbar {
+overflow: hidden;
+}
+#div_widget .k-master-row {font-weight:690;}
+#div_widget.k-grid .k-edit-cell{
+	padding:0px;
+}
+#div_widget.k-grid td {
+	border-width: 0px;
+	line-height: 17px;
+}
+#div_widget.k-grid .k-hierarchy-cell,
+#div_widget.k-grid .k-hierarchy-cell,
+#div_widget.k-grid .k-hierarchy-col,
+#div_widget.k-grid .k-grid-header {
+	display:none;
+}
+#div_widget.k-grid td.k-state-focused {
+	background-color:transparent;
+	-webkit-box-shadow:none;
+	box-shadow:none;
+}
+#div_widget.k-grid .k-detail-cell{
+	padding:0px;
+}
+#div_widget .k-master-row td{
+	border-bottom-width: 1px;
+	line-height: 11px;
+}
+/* тулбар */
+#div_widget .k-toolbar{
+	padding:0px;
+}
+/* вложение */
+#div_widget.k-grid td td.attach,
+#div_widget.k-grid td td.ToolbarMenu {
+	padding:0px;
+}
+#div_widget .attachmenu,
+#div_widget .ToolbarMenu{
+	margin-top: -18px;
+	position: absolute;
+}
+#div_widget .attachmenu .k-link,
+#div_widget .ToolbarMenu .k-link {padding-left: 5px;}
+#div_widget .attachmenu,
+.k-dropdown .k-state-active,
+.user_recipients .k-state-active,
+#div_widget .attachmenu .k-state-active,
+#div_widget .attachmenu  > li.k-state-hover,
+#div_widget .attachmenu  > li.k-state-hover:hover,
+#div_widget .attachmenu > li,
+#div_widget .ToolbarMenu,
+#div_widget .ToolbarMenu .k-state-active,
+#div_widget .ToolbarMenu  > li.k-state-hover,
+#div_widget .ToolbarMenu  > li.k-state-hover:hover,
+#div_widget .ToolbarMenu > li{
+	border-color: transparent;
+	background: none;
+	background-image:none;
+	background-image:none,-webkit-linear-gradient(0);
+	background-image:none,-moz-linear-gradient(0);
+	background-image:none,-o-linear-gradient(0);
+	background-image:none,linear-gradient(0)
+}
+/*Сообщениe*/
+.form-very-active-inputs {overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
+.subject {font-weight:bold;}
+.w_content { }
+.w_content_o { }
+.w_a_content {overflow: hidden; line-height: 18px;text-overflow: ellipsis; cursor: pointer;}
+.w_content_more {display:none;}
+/*Действие*/
+.is_read_b { background: url('/i/_skins/Ken/familiar.gif') 0px -32px no-repeat;width:16px;height:16px;margin-top:-4px;}
+.is_read_b:hover { background: url('/i/_skins/Ken/familiar.gif') 0px -16px no-repeat;width:16px;height:16px;}
+.is_read_o { background: url('/i/_skins/Ken/familiar.gif') 0px 0px no-repeat;width:16px;height:16px;margin-top:-4px;}
+img.delete_favorites, img.add_favorites, img.is_read, .is_read{cursor: pointer;}
+/*ссылка*/
+.opentab, .k-i-search, .k-i-funnel-clear, .wacontent{cursor: pointer;}
+#div_widget .k-toolbar {
+	height:33px;
+}
+.more{text-decoration: underline;}
+.recipient-icon {background: url('/i/_skins/Ken/answer.png') 0px 0px no-repeat;width:16px;height:16px;padding-left:20px;}
+</style>
+</head>
+<body class="refer" style="overflow: hidden;">
+<div id="div_widget" data-height="71"></div>
+<script>
+$(document).ready(function () {
+	/******************************** SelectThemeChooser *****************************/
+	var SelectThemeChooser;
+
+	SelectThemeChooser = get_global_setting("kendoSkin", "silver");
+	$('link[rel*=style][title]').each(function (i) {
+		this.disabled = true;
+		if (this.getAttribute('title') === SelectThemeChooser) {this.disabled = false; }
+	});
+	/************************************************************************************/
+	function getParameterByName(name){
+		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		var regexS = "[\\?&]" + name + "=([^&#]*)";
+		var regex = new RegExp(regexS);
+		var results = regex.exec(window.location.search);
+		if(results == null){
+			return "";
+		} else {
+			return decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+	}
+	var favorites = getParameterByName("favorites");
+
+	var sid;
+	var cs = ("" + document.cookie).split (/; */);
+	for (var i = 0; i < cs.length; i++) {
+		var kv = cs [i].split(/=/);
+		if (kv [0] != 'sid') continue;
+		sid = kv [1];
+		break;
+	}
+
+	var dataSource = new kendo.data.DataSource({
+		transport: {
+			read: {
+				url: "/?type=msgs&json=msgs&sid=" + sid,
+				dataType: "json"
+			},
+			update: {
+				url: "/?type=msgs&action=json_update&sid=" + sid,
+				dataType: "json",
+				type: "POST"
+			},
+			destroy: {
+				url: "msgs.json",
+				dataType: "json"
+			},
+			parameterMap: function(options, operation) {
+				if (operation !== "read" && options.models) {
+					return {
+						models: kendo.stringify(options.models)
+					};
+				}
+				return options;
+			}
+		},
+		autoSync: true, //авто сохранение
+		batch: true,
+		schema: {
+			model: {
+				id: "id",
+				fields: {
+					id:              { editable: false, nullable: true },
+					dt:              { editable: false },
+					is_read_flag:    { editable: true, type: "boolean" },
+					dt_delivered:    { editable: false },
+					is_favorites:    { editable: true, type: "boolean" },
+					base_doc_label:  { editable: false },
+					base_doc_href:   { editable: false },
+					base_doc_type:   { editable: false },
+					base_doc_banner: { editable: false },
+					label:           { editable: false },
+					msg_files_cnt:   { editable: false },
+					msg_files:       { editable: false },
+					id_msg_type:     { editable: false },
+					user_recipients: { editable: false },
+					user_answer:     { editable: false },
+					id_doc_type:     { editable: false },
+					id_type:         { editable: false },
+				}
+			}
+		},
+		filter:{
+			logic: "and",
+			filters: [
+				{field: "is_read_flag", operator: "equals", value: false},
+				{field: "fake", operator: "equals", value: 0}
+			]
+		},
+		pageSize: get_global_setting("pageSize_msgs", "5")
+	});
+
+	var grid = $("#div_widget").kendoGrid({
+		dataSource: dataSource,
+		pageable: {
+			refresh: true,
+			pageSizes: true,
+			pageSizes: [5, 10, 25, 50],
+			messages: {
+				display: "{1} из <span id='citrmsmsgs'>{2}</span>",
+				empty: "",
+				page: "Страница",
+				of: "",
+				first: "К первой странице",
+				last: "К последней странице",
+				previous: "Предыдущая",
+				next: "Следущая",
+				itemsPerPage: "на страницу",
+				refresh: "Сброс"
+			}
+		},
+		toolbar: kendo.template($("#msgsToolbarTmpl").html()),
+		detailTemplate: kendo.template($("#msgsdetailTemplate").html()),
+		dataBound: dataBound,
+		columns: [
+			{
+				field: "is_read_flag",
+				title: " ",
+				template: "#if(is_read_flag){# <div class='is_read_o is_read' title='Ознакомлен ${dt_delivered}'>&nbsp;</div> #}else{# <div class='is_read_b is_read' title='Отметить «Ознакомлен»'>&nbsp;</div> #}#",
+				width: "25px"
+			},
+			{
+				command: {
+					text: " ", template: "<input class='example_check' name='check[]' type='checkbox'>"
+				},
+				title: " ",
+				width: "22px"
+			},
+			{
+				field: "is_favorites",
+				title: " ",
+				template: "#if(is_favorites){# <img src='/i/_skins/Ken/knewstuff.png' class='delete_favorites' title='Убрать из избранного'> #}else{# <img src='/i/_skins/Ken/knewstuff-add.png' class='add_favorites' title='В избранное'> #}#",
+				width: "22px"
+			},
+			{
+				field: "id_msg_type",
+				title: " ",
+				template: "#if(id_msg_type == 1){# <img src='/i/_skins/Ken/msg_replica.png' title='Реплика'> #}else{# <img src='/i/_skins/Ken/msg_reminder.png' title='Напоминание'> #}#",
+				width: "25px"
+			},
+			{
+				field: "base_doc_label",
+				template: "<nobr>${dt}</nobr>&nbsp&nbsp# if (base_doc_label) { #<b><span data-value='${base_doc_href}&__last_query_string=-1|${base_doc_href}&__last_query_string=-1|${base_doc_type}|${base_doc_banner}' class='opentab form-very-active-inputs' title='Читать далее'>Основание: ${base_doc_label}</span></b># } #",
+				title: " ",
+			}
+		]
+	}).on('change', '.k-pager-sizes select', function (e){
+		set_global_setting("pageSize_msgs", $(this).val());
+	}).on('click', '.is_read', function(){
+		$('.example_check:checked').each(function (i) {
+			var cell = $(this).closest('td').prev();
+			grid.data("kendoGrid").editCell(cell);
+			cell.find("input").attr('checked', true).change();
+			grid.data("kendoGrid").closeCell();
+			/************* Демо скрытие позицый ***************
+			if (favorites == "true"){
+				dataSource.filter({
+					logic: "and",
+					filters: [
+						{field: "is_favorites", operator: "equals", value: true},
+						{field: "fake", operator: "equals", value: 0}
+					]
+				});
+			} else {
+				dataSource.filter({
+					logic: "and",
+					filters: [
+						{field: "is_read_flag", operator: "equals", value: false},
+						{field: "fake", operator: "equals", value: 0}
+					]
+				});
+			}
+			****************************************************/
+		})
+	}).on('click', '.w_a_content, .w_a_content a', function(){
+		if($(this).hasClass('w_content_o')){
+			$(this).removeClass('w_content_o').addClass('w_content');
+			$(this).find('.redmore').each(function () {
+				if ($(this).html().length > dataSource.data()[0].len) {
+					var txt = $(this).html();
+					var len = dataSource.data()[0].len;
+					var dots = "<span>" + '&#8230;' + " <em><b>Подробнее...</b></em></span>";
+					var shown = txt.substring(0, len) + dots;
+					var hidden = '<span class="hidden" style="display:none;">' + txt + '</span>';
+					$(this).html(shown + hidden);
+				} else {
+					var txt = $(this).html();
+					var dots = "<span title='Подробнее...'> <em><b></b></em></span>";
+					var hidden = '<span class="hidden" style="display:none;">' + txt + '</span>';
+					$(this).html(txt + dots + hidden);
+				}
+			});
+			$(this).find('.w_content_more').css("display", "none");
+		} else {
+			$('#div_widget').find('.w_a_content').each(function (i) {
+				if($(this).hasClass('w_content_o')){
+					$(this).trigger('click');
+				}
+			})
+			$(this).addClass('w_content_o').removeClass('w_content');
+			var redmoretxt = $(this).find('.hidden').html();
+			if(redmoretxt){$(this).find('.redmore').empty().html(redmoretxt)};
+			$(this).find('.w_content_more').css("display", "block");
+		}
+	}).on('click', '.filtera', function (e){
+		var filterCat = $("#filtertype").val();
+		var filterText = $('#div_widget').find('.filter').val();
+		filterFunc(filterCat, filterText, "no");
+	}).on('click', '.resetfilter', function (e){
+		var filterCat = $("#filtertype").val();
+		filterFunc(filterCat, "", "yes");
+	}).on('click', '.opentab', function(){
+		var link = $(this).data('value');
+		top.opentab(link, {append : 1});
+	}).on('click', '.userrecipient', function(){
+		top.opentab($(this).prev('.user_recipients').find('select').val(), 'Сообщение', 'msgs', {append : 1});
+	}).on('click', 'div.is_read', function(){
+		var cell = $(this).closest('td');
+		grid.data("kendoGrid").editCell(cell);
+		cell.find("input").attr('checked', true).change();
+		grid.data("kendoGrid").closeCell();
+		if (favorites == "true") {
+			return;
+		}
+		dataSource.filter({
+			logic: "and",
+			filters: [
+				{field: "is_read_flag", operator: "equals", value: false},
+				{field: "fake", operator: "equals", value: 0}
+			]
+		});
+	}).on('click', 'img.add_favorites', function(){
+		var cell = $(this).closest('td');
+		grid.data("kendoGrid").editCell(cell);
+		cell.find("input").attr('checked', true).change();
+		grid.data("kendoGrid").closeCell();
+		if(favorites != "true"){
+			$(parent.document).find("#favorites").find('iframe').contents().find("#div_widget-2 iframe").contents().find("#div_widget").attr('data-reload', 'reload');
+		} else {
+			$(parent.parent.document).find("#msgs").find('iframe').contents().find("#div_widget").attr('data-reload', 'reload');
+		}
+	}).on('click', 'img.delete_favorites', function(){
+		var cell = $(this).closest('td');
+		grid.data("kendoGrid").editCell(cell);
+		cell.find("input").attr('checked', false).change();
+		grid.data("kendoGrid").closeCell();
+		/************* Демо скрытие позицый ***************
+		if (favorites == "true"){
+			dataSource.filter({
+				logic: "and",
+				filters: [
+					{field: "is_favorites", operator: "equals", value: true},
+					{field: "fake", operator: "equals", value: 0}
+				]
+			});
+		}
+		**************************************************/
+		if(favorites != "true"){
+			$(parent.document).find("#favorites").find('iframe').contents().find("#div_widget-2 iframe").contents().find("#div_widget").attr('data-reload', 'reload');
+		} else {
+			$(parent.parent.document).find("#msgs").find('iframe').contents().find("#div_widget").attr('data-reload', 'reload');
+		}
+	}).on('click', '.wacontent', function(){
+		$(this).next('td').find('.w_a_content').trigger('click');
+	}).on('keydown', '.filter', function(e){
+		if (kendo.keys.ENTER == e.keyCode) {
+			$('.filtera').trigger('click');
+		}
+	})
+
+//dataSource.fetch (function (e) {
+//	alert (dataSource.data()[0].label + ' - ' + dataSource.data()[1].label);
+//});
+
+	$('#checkall').on('change', function(){
+		if($(this).attr('checked')){
+			$('.example_check:enabled').attr('checked', true);
+		} else {
+			$('.example_check:enabled').attr('checked', false);
+		}
+	});
+
+	function dataBound(e) {
+		this.expandRow(this.tbody.find("tr.k-master-row"));
+		$('.user_recipients').kendoDropDownList();
+		$('#checkall').attr('checked', false);
+		if(favorites == "true"){
+			$(".k-grid-content").css({'height': $(parent.document).find(".window_iframe").height() - $("#div_widget").data("height")});
+		} else {
+			$(".k-grid-content").css({'height': $(parent.document).find("#msgs").height() - $("#div_widget").data("height")});
+		}
+		setInterval(function(){
+			var show_cnt = $("#citrmsmsgs").html() || 0;
+			var label = dataSource.data()[0].label || 'Переписка';
+			if(favorites == "true"){
+				$(parent.document).find("#msgs").text(label + (show_cnt > 0 ? " (" + show_cnt + ")" : ""));
+			}else{
+				var cnt = dataSource.data()[0].cnt == show_cnt ? show_cnt : (show_cnt + " из " + dataSource.data()[0].cnt);
+				$(parent.document).find("#msgs").prev(".k-window-titlebar").find(".k-window-title").text(label + " (" + cnt + ")");
+			}
+		},1000);
+		$('.redmore').each(function () {
+			if ($(this).html().length > dataSource.data()[0].len) {
+				var txt = $(this).html();
+				var len = dataSource.data()[0].len;
+				var dots = "<span>" + '&#8230;' + " <em><b>Подробнее...</b></em></span>";
+				var shown = txt.substring(0, len) + dots;
+				var hidden = '<span class="hidden" style="display:none;">' + txt + '</span>';
+				$(this).html(shown + hidden);
+			} else {
+				var txt = $(this).html();
+				var dots = "<span title='Подробнее...'> <em><b></b></em></span>";
+				var hidden = '<span class="hidden" style="display:none;">' + txt + '</span>';
+				$(this).html(txt + dots + hidden);
+			}
+		});
+		$('.k-detail-row').each(function (i) {
+			if($(this).hasClass('k-alt') === false){
+				$(this).addClass('k-alt');
+			}else{
+				$(this).prev().removeClass('k-alt');
+			}
+		})
+	}
+	var delay = 5000;
+	function turnOver(){
+		if($('#div_widget').attr('data-reload') == "reload"){
+			$('#div_widget').attr('data-reload', 'noreload');
+				$('.k-pager-refresh').trigger('click');
+		}
+		window.setTimeout(turnOver, delay);
+	}
+	turnOver();
+
+	$('#filtertype').kendoDropDownList({
+		dataSource: [
+			{ label: "Все", id: 0 },
+			{ label: "Реплики", id: 1 },
+			{ label: "Напоминания", id: 2 }
+		],
+		dataTextField: "label",
+		dataValueField: "id",
+		select: function(e){
+			var filterCat = this.dataItem(e.item.index()).id;
+			var filterText = $('#div_widget').find('.filter').val();
+			filterFunc(filterCat, filterText, "no");
+		}
+	});
+
+	function filterFunc(filterCat, filterText, refresh){
+		if(refresh == "no"){
+			if (filterText != "" ){
+				if(filterCat != 0){
+					if (favorites == "true"){
+						dataSource.filter({
+							logic: "and",
+							filters: [
+								{field: "label", operator: "contains", value: filterText},
+								{field: "id_msg_type", operator: "equals", value: filterCat},
+								{field: "is_favorites", operator: "equals", value: true},
+								{field: "fake", operator: "equals", value: 0}
+							]
+						});
+					} else {
+						dataSource.filter({
+							logic: "and",
+							filters: [
+								{field: "label", operator: "contains", value: filterText},
+								{field: "id_msg_type", operator: "equals", value: filterCat},
+								{field: "is_read_flag", operator: "equals", value: false},
+								{field: "fake", operator: "equals", value: 0}
+							]
+						});
+					}
+				} else {
+					if (favorites == "true"){
+						dataSource.filter({
+							logic: "and",
+							filters: [
+								{field: "label", operator: "contains", value: filterText},
+								{field: "is_favorites", operator: "equals", value: true},
+								{field: "fake", operator: "equals", value: 0}
+							]
+						});
+					} else {
+						dataSource.filter({
+							logic: "and",
+							filters: [
+								{field: "label", operator: "contains", value: filterText},
+								{field: "is_read_flag", operator: "equals", value: false},
+								{field: "fake", operator: "equals", value: 0}
+							]
+						});
+					}
+				}
+			} else {
+				if (filterCat != 0){
+					if (favorites == "true"){
+						dataSource.filter({
+							logic: "and",
+							filters: [
+								{field: "id_msg_type", operator: "equals", value: filterCat},
+								{field: "is_favorites", operator: "equals", value: true},
+								{field: "fake", operator: "equals", value: 0}
+							]
+						});
+					} else {
+						dataSource.filter({
+							logic: "and",
+							filters: [
+								{field: "id_msg_type", operator: "equals", value: filterCat},
+								{field: "is_read_flag", operator: "equals", value: false},
+								{field: "fake", operator: "equals", value: 0}
+							]
+						});
+					}
+				} else {
+					if (favorites == "true"){
+						dataSource.filter({
+							logic: "and",
+							filters: [
+								{field: "is_favorites", operator: "equals", value: true},
+								{field: "fake", operator: "equals", value: 0}
+							]
+						});
+					} else {
+						dataSource.filter({
+							logic: "and",
+							filters: [
+								{field: "is_read_flag", operator: "equals", value: false},
+								{field: "fake", operator: "equals", value: 0}
+							]
+						});
+					}
+				}
+			}
+		} else {
+			$('#div_widget').find('.filter').attr("value", "");
+			if (favorites == "true"){
+				if(filterCat != 0){
+					dataSource.filter({
+						logic: "and",
+						filters: [
+							{field: "id_msg_type", operator: "equals", value: filterCat},
+							{field: "is_favorites", operator: "equals", value: true},
+							{field: "fake", operator: "equals", value: 0}
+						]
+					});
+				} else {
+					dataSource.filter({
+						logic: "and",
+						filters: [
+							{field: "is_favorites", operator: "equals", value: true},
+							{field: "fake", operator: "equals", value: 0}
+						]
+					});
+				}
+			} else {
+				if(filterCat != 0){
+					dataSource.filter({
+						logic: "and",
+						filters: [
+							{field: "id_msg_type", operator: "equals", value: filterCat},
+							{field: "is_read_flag", operator: "equals", value: false},
+							{field: "fake", operator: "equals", value: 0}
+						]
+					});
+				} else {
+					dataSource.filter({
+						logic: "and",
+						filters: [
+							{field: "is_read_flag", operator: "equals", value: false},
+							{field: "fake", operator: "equals", value: 0}
+						]
+					});
+				}
+			}
+		}
+	}
+
+	var dropdownlist = $("#filtertype").data("kendoDropDownList");
+	dropdownlist.list.width(160);
+
+	if (favorites == "true"){
+		dataSource.filter({
+			logic: "and",
+			filters: [
+				{field: "is_favorites", operator: "equals", value: true},
+				{field: "fake", operator: "equals", value: 0}
+			]
+		});
+	}
+
+	$(window).resize (function() {
+		$(".k-grid-content").css({'height': $("#div_widget").height() - $("#div_widget").data("height")});
+	})
+});
+</script>
+<!--
+/******************	Переписка/напоминания	*****************/
+"id": 								ID Сообщения
+"dt": 								Дата создания сообщения
+"is_read_flag": 					Флаг ознакомлен
+"dt_delivered": 					Дата ознакомлен
+"is_favorites": 					Флаг избранного
+"base_doc_label": 					Документ-основание
+"base_doc_href": 					Ссылка на документ-основание
+"base_doc_type": 					Иконка документа-основания
+"base_doc_banner": 					Название вкладки для документа-основания
+"label": 							Содержание сообщения
+"msg_files_cnt": 					Флаг файлов
+"msg_files": 						Массив файлов
+"id_msg_type":						Тип сообщения [сообщения 1/ напоминания 2]
+"user_recipients":					Массив получателей
+"user_answer":						Массив кому можно ответить
+"id_doc_type":						Тип документа, к которому подвязано сообщение
+"id_type":							Идентификатор документ
+/**************************************************/
+-->
+<script type="text/x-kendo-template" id="msgsdetailTemplate">
+<table>
+	<tr><td>
+		<table>
+		<tr>
+		<td class="wacontent" style="width:25px;vertical-align: top;padding-top:4px;">
+			# if (msg_files_cnt) { #
+			<nobr><img title="Вложения" src="/i/_skins/Ken/paperclip1_black.png" style="vertical-align: middle;">#= msg_files.length #</nobr>
+			# } #
+		</td>
+		<td style="padding: 0px;">
+		# if (id_msg_type == 1) {#
+		<div class="forma">
+		# href = '/?type=msgs&action=create&can_close_window=1&id_msg_type=1&id_doc_type=' + id_doc_type + '&id_type=' + id_type #
+		<select name="user_recipients" class="user_recipients" style="width:200px;">
+			# for (var i = 0; i < user_answer.length; i++) { #
+			<option value="#= href #&id_user_recipient=#= user_answer[i]['id'] #"># if (user_answer[i]['icon']) { #<img src="/i/_skins/Ken/#= user_answer[i]['icon'] #" class="k-image"># } # #= user_answer[i]['label'] #</option>
+			# } #
+			# if (user_answer.length > 2) { #
+				<option value="#= href #&ids_user_recipients=# for (var i = 1; i < user_answer.length; i++) { ##= user_answer[i]['id'] #,# } #">Всем</option>
+			# } #
+		</select>
+		<button class="userrecipient k-button"><span class="recipient-icon">Ответить</span></button>
+		</div>
+		# } #
+		<div class="w_content w_a_content">
+			<table>
+				<tr><td style="height:27px; padding-top: 2px;">
+					<div class="redmore" data-msgtype="#= id_msg_type #">#= label #</div>
+				</td></tr>
+			# if (id_msg_type == 1) {#
+				<tr class="w_content_more"><td>
+				<div class="k-block">
+				<table><tr>
+				<td width="40" style="text-align:right;"><b>Кому:</b></td>
+				<td><ul>
+					# for (var i = 0; i < user_recipients.length; i++) { #
+						<li><nobr># if (user_recipients[i]['icon']) { #<img src="/i/_skins/Ken/#= user_recipients[i]['icon'] #" class="k-image"># } # #= user_recipients[i]['label'] # #if (user_recipients[i]['dt_delivered']){# (прочитано #= user_recipients[i]['dt_delivered'] # ) #}#</nobr></li>
+					# } #
+				</ul></td>
+				</tr></table>
+				</div>
+				</td></tr>
+			# } #
+			# if (msg_files_cnt) { #
+				<tr class="w_content_more"><td>
+					<ul style="margin-top:2px;">
+					# for (var i = 0; i < msg_files.length; i++) { #
+						<li style="float:left;"><a href="#= msg_files[i]['file_path'] #" target="_blank"># if (msg_files[i]['icon']) { #<img src="/i/_skins/Ken/#= msg_files[i]['icon'] #" class="k-image" style="vertical-align: middle;"># } # #= msg_files[i]['file_name'] #</a>&nbsp;&nbsp;# if (i < msg_files.length - 1) { #|&nbsp;&nbsp;# } #</li>
+					# } #
+					</ul>
+				</td></tr>
+			# } #
+			</table>
+
+		</div>
+		</td>
+		</tr>
+		</table>
+	</td></tr>
+</table>
+</script>
+<script type="text/x-kendo-template" id="msgsToolbarTmpl">
+	<div class="toolbar">
+		<table><tr>
+		<td style="width:27px;padding:0px;"></td>
+		<td style="width:15px;padding:7px 5px 5px;">
+		<input id="checkall" type="checkbox"/>
+		</td><td style="width:90px;">
+			<button class="is_read k-button">Ознакомлен</button>
+		</td>
+		<td>
+		<div id="filtertype" style="width:80px;"></div>
+		</td><td style="padding:2px 5px; text-align:right;">
+		<span class="k-textbox k-space-right" style="padding-right: 40px;">
+			<input class="filter" type="text" value="" size=15 />
+			<span class="filtera k-icon k-i-search" style="right: 20px;" title="найти">&nbsp;</span>
+			<span class="resetfilter k-icon k-i-funnel-clear" title="сброс">&nbsp;</span>
+		</span>
+		<span data-value="/?type=msgs|/?type=msgs|msgs|Сообщения" class="opentab k-button">Архив</span>
+		</td></tr></table>
+	</div>
+</script>
+</body>
+</html>
