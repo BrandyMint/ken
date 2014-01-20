@@ -1,0 +1,96 @@
+#admin {width:150px;height:25px;padding:5px 5px 5px 9px;background:url('/i/menu_button.gif') no-repeat 0 0;}
+#admin a {color: #5C676E;text-decoration:none;font-family: Tahoma, Verdana, sans-serif;font-size:8pt;font-style:normal}
+
+#Menu {position:absolute;top:expression(document.getElementById('admin').offsetTop+25);left:expression(document.getElementById('admin').offsetLeft + document.getElementById('admin').offsetParent.offsetLeft);visibility:expression(subsets_are_visible ? 'visible' : 'hidden');z-index:100;}
+#Menu .mm {background-color:#BCBFBD;padding:6px 5px 6px 9px;border-bottom:solid 1px #BCBFBD;}
+#Menu .mm0 {background-color:#BCBFBD;padding:6px 5px 0px 9px;}
+
+#Menu a {color: #5C676E;text-decoration:none;font-family: Tahoma, Verdana, sans-serif;font-size:8pt;font-style:normal}
+#Menu a:hover {color: #5C676E;text-decoration:underline;font-family: Tahoma, Verdana, sans-serif;font-size:8pt;font-style:normal}
+
+
+.txt1 {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #5C676E; FONT-FAMILY: Tahoma, 'MS Sans Serif';
+}
+
+A.button, A.button:link, A.button:active, A.button:hover, A.button:visited {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #5C676E; FONT-FAMILY: Tahoma, 'MS Sans Serif'; TEXT-DECORATION: none
+}
+
+/*
+input.form-mandatory-inputs, select.form-mandatory-inputs, textarea.form-mandatory-inputs {
+	FONT-SIZE: 8pt;
+	COLOR: #000000;
+	background-color: #f7f7ad;
+	FONT-FAMILY: Tahoma, 'MS Sans Serif';
+	border: 1px #7f9db9 solid;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+*/
+.header_0 {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 12pt;
+	COLOR: #5C676E;
+	FONT-FAMILY: 'Trebuchet MS', 'MS Sans Serif';
+}
+
+.form-active-banner, .form-passive-banner {
+	FONT-STYLE: oblique;
+	text-decoration: underline;
+}
+
+.form-deleted-banner {
+	FONT-WEIGHT: bold;
+	FONT-SIZE:  8pt;
+	FONT-FAMILY: Tahoma, 'MS Sans Serif';
+	FONT-STYLE: oblique;
+	text-decoration: underline;
+	COLOR: #000000;
+	background-color: #dadae0;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+
+	border-color: #d6d3ce;
+	border-style:solid;
+
+	border-left-width: 0px;
+	border-top-width: 0px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+
+}
+
+.form-very-active-inputs {
+	FONT-SIZE:  8pt;
+	font-weight: bold;
+	FONT-FAMILY: Tahoma, 'MS Sans Serif';
+	COLOR: #293869;
+	background-color: #f9f9ff;
+	padding-left: 0px;
+	padding-right: 0px;
+	border-style:none;
+}
+
+.form-very-deleted-inputs {
+	FONT-SIZE:  8pt;
+	font-weight: bold;
+	FONT-FAMILY: Tahoma, 'MS Sans Serif';
+	COLOR: #293869;
+	background-color: #dadae0;
+	padding-left: 0px;
+	padding-right: 0px;
+	border-style:none;
+}
+
+.tasks-file-link, .tasks-file-link:visited, .tasks-file-link:hover, .tasks-file-link:active {
+	font-size: 8pt;
+	font-weight: bold;
+	font-family: Tahoma, 'MS Sans Serif';
+	color: #293869;
+	padding-left: 0px;
+	padding-right: 0px;
+	border-style: none;
+}

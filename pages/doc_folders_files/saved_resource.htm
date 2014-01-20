@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<!-- saved from url=(0177)http://photon-ken-mgruzdev.cheby.ru/?salt=1149951967.59368&sid=8833004804009922000&__last_scrollable_table_row=0&id=3012&__tree=1&__last_query_string=28&q=&type=docs&is_actual=0 -->
+<html xmlns="http://www.w3.org/1999/xhtml" class="touch"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		
+
+		<title>Фотон</title>
+
+		<meta name="Generator" content="Eludia 13.12.26.173f45e / MySQL 5.5.31-0+wheezy1-log; parameters are fetched with ; gateway_interface is CGI/1.1; NO mod_perl AT ALL is in use">
+		
+		<!-- silver -->
+		<link href="../../_skins/Ken/all.css" type="text/css" rel="STYLESHEET"><link href="jquery-ui-1.10.3.custom.min.css" type="text/css" rel="STYLESHEET"><link href="new.css" type="text/css" rel="STYLESHEET">
+
+		<script src="../../_skins/Ken/all.js"></script><style type="text/css"></style><script src="jquery.blockUI.js"></script><script src="jquery-ui-1.10.3.custom.min.js"></script><script src="jQuery.showModalDialog.js"></script>
+
+		<script src="navigation.js"></script>
+		<script src="i18n_RUS.js"></script>
+	<script src="jquery.blockUI(1).js"></script><script>
+$(document).ready (function () {
+; try {if (!window.top.title_set) window.top.document.title = the_page_title;} catch(e) {};numerofforms++;;
+
+				$(document.getElementById ('/&sid=8833004804009922000&id=1699&__tree=1&__last_query_string=29')).on ('contextmenu', function (e) {
+
+					e.stopPropagation ();
+
+					var menuDiv = $('<ul class="menuFonDark" title="" style="position:absolute;z-index:200;white-space:nowrap" />').appendTo (document.body);
+
+					menuDiv.css ({
+						top:  e.pageY,
+						left: e.pageX
+					});
+
+					var items = [{"imageUrl":"/i/ken/images/icons/edit.png","target":"_self","text":"Редактировать","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=0&id=1699&__tree=1&__last_query_string=29&type=doc_files&__last_scrollable_table_row=0"},{"imageUrl":"/i/ken/images/icons/delete.png","target":"_self","text":"Удалить","url":"javascript:if (confirm ('Удалить импорт выписки 1c_to_Eludia?')) {nope('/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=0&id=1699&__tree=1&__last_query_string=29&action=delete&type=doc_files', '_self')} else {document.body.style.cursor = 'default'; nop ();}"},{"imageUrl":"/i/_skins/Ken/i_copy.png?8833004804009922000","target":"invisible","text":"Создать версию","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=0&parent=1699&__tree=1&__last_query_string=29&action=create&type=doc_files&__last_scrollable_table_row=0"}];
+					menuDiv.kendoMenu ({
+						dataSource: items,
+						orientation: 'vertical',
+						select: function (e) {
+							var selected_url = items [$(e.item).index()].url;
+							if (selected_url.match(/^javascript:/)) {
+								eval (selected_url);
+							}
+							menuDiv.remove ();
+						}
+					});
+
+					var width = menuDiv.width ();
+
+					window.setTimeout (function () {
+						menuDiv.width (width);
+					}, 100);
+
+//					$('a', menuDiv).each (function () {
+//						$(this).attr ('target', '_content_iframe');
+//					});
+
+					var kill = window.setTimeout (function () {
+						menuDiv.remove ()
+					}, 1500);
+
+					menuDiv.hover (
+						function () {
+							window.clearTimeout (kill);
+							menuDiv.width (width);
+						},
+						function () {
+							window.setTimeout (function () {
+								menuDiv.remove ()
+							}, 500);
+						}
+					);
+
+					return false;
+
+				})
+
+			
+
+				$(document.getElementById ('/&sid=8833004804009922000&__last_scrollable_table_row=0&id=1700&__tree=1&__last_query_string=29')).on ('contextmenu', function (e) {
+
+					e.stopPropagation ();
+
+					var menuDiv = $('<ul class="menuFonDark" title="" style="position:absolute;z-index:200;white-space:nowrap" />').appendTo (document.body);
+
+					menuDiv.css ({
+						top:  e.pageY,
+						left: e.pageX
+					});
+
+					var items = [{"imageUrl":"/i/ken/images/icons/edit.png","target":"_self","text":"Редактировать","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=1&id=1700&__tree=1&__last_query_string=29&type=doc_files&__last_scrollable_table_row=1"},{"imageUrl":"/i/ken/images/icons/delete.png","target":"_self","text":"Удалить","url":"javascript:if (confirm ('Удалить Требования к файлу загрузки контрагентов (csv)?')) {nope('/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=1&id=1700&__tree=1&__last_query_string=29&action=delete&type=doc_files', '_self')} else {document.body.style.cursor = 'default'; nop ();}"},{"imageUrl":"/i/_skins/Ken/i_copy.png?8833004804009922000","target":"invisible","text":"Создать версию","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=1&parent=1700&__tree=1&__last_query_string=29&action=create&type=doc_files&__last_scrollable_table_row=1"}];
+					menuDiv.kendoMenu ({
+						dataSource: items,
+						orientation: 'vertical',
+						select: function (e) {
+							var selected_url = items [$(e.item).index()].url;
+							if (selected_url.match(/^javascript:/)) {
+								eval (selected_url);
+							}
+							menuDiv.remove ();
+						}
+					});
+
+					var width = menuDiv.width ();
+
+					window.setTimeout (function () {
+						menuDiv.width (width);
+					}, 100);
+
+//					$('a', menuDiv).each (function () {
+//						$(this).attr ('target', '_content_iframe');
+//					});
+
+					var kill = window.setTimeout (function () {
+						menuDiv.remove ()
+					}, 1500);
+
+					menuDiv.hover (
+						function () {
+							window.clearTimeout (kill);
+							menuDiv.width (width);
+						},
+						function () {
+							window.setTimeout (function () {
+								menuDiv.remove ()
+							}, 500);
+						}
+					);
+
+					return false;
+
+				})
+
+			
+
+				$(document.getElementById ('/&sid=8833004804009922000&__last_scrollable_table_row=1&id=1701&__tree=1&__last_query_string=29')).on ('contextmenu', function (e) {
+
+					e.stopPropagation ();
+
+					var menuDiv = $('<ul class="menuFonDark" title="" style="position:absolute;z-index:200;white-space:nowrap" />').appendTo (document.body);
+
+					menuDiv.css ({
+						top:  e.pageY,
+						left: e.pageX
+					});
+
+					var items = [{"imageUrl":"/i/ken/images/icons/edit.png","target":"_self","text":"Редактировать","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=2&id=1701&__tree=1&__last_query_string=29&type=doc_files&__last_scrollable_table_row=2"},{"imageUrl":"/i/ken/images/icons/delete.png","target":"_self","text":"Удалить","url":"javascript:if (confirm ('Удалить Требования к файлу загрузки контрагентов (XML)?')) {nope('/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=2&id=1701&__tree=1&__last_query_string=29&action=delete&type=doc_files', '_self')} else {document.body.style.cursor = 'default'; nop ();}"},{"imageUrl":"/i/_skins/Ken/i_copy.png?8833004804009922000","target":"invisible","text":"Создать версию","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=2&parent=1701&__tree=1&__last_query_string=29&action=create&type=doc_files&__last_scrollable_table_row=2"}];
+					menuDiv.kendoMenu ({
+						dataSource: items,
+						orientation: 'vertical',
+						select: function (e) {
+							var selected_url = items [$(e.item).index()].url;
+							if (selected_url.match(/^javascript:/)) {
+								eval (selected_url);
+							}
+							menuDiv.remove ();
+						}
+					});
+
+					var width = menuDiv.width ();
+
+					window.setTimeout (function () {
+						menuDiv.width (width);
+					}, 100);
+
+//					$('a', menuDiv).each (function () {
+//						$(this).attr ('target', '_content_iframe');
+//					});
+
+					var kill = window.setTimeout (function () {
+						menuDiv.remove ()
+					}, 1500);
+
+					menuDiv.hover (
+						function () {
+							window.clearTimeout (kill);
+							menuDiv.width (width);
+						},
+						function () {
+							window.setTimeout (function () {
+								menuDiv.remove ()
+							}, 500);
+						}
+					);
+
+					return false;
+
+				})
+
+			
+
+				$(document.getElementById ('/&sid=8833004804009922000&__last_scrollable_table_row=2&id=1702&__tree=1&__last_query_string=29')).on ('contextmenu', function (e) {
+
+					e.stopPropagation ();
+
+					var menuDiv = $('<ul class="menuFonDark" title="" style="position:absolute;z-index:200;white-space:nowrap" />').appendTo (document.body);
+
+					menuDiv.css ({
+						top:  e.pageY,
+						left: e.pageX
+					});
+
+					var items = [{"imageUrl":"/i/ken/images/icons/edit.png","target":"_self","text":"Редактировать","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=3&id=1702&__tree=1&__last_query_string=29&type=doc_files&__last_scrollable_table_row=3"},{"imageUrl":"/i/ken/images/icons/delete.png","target":"_self","text":"Удалить","url":"javascript:if (confirm ('Удалить Требования к файлу загрузки накладных (XML)?')) {nope('/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=3&id=1702&__tree=1&__last_query_string=29&action=delete&type=doc_files', '_self')} else {document.body.style.cursor = 'default'; nop ();}"},{"imageUrl":"/i/_skins/Ken/i_copy.png?8833004804009922000","target":"invisible","text":"Создать версию","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=3&parent=1702&__tree=1&__last_query_string=29&action=create&type=doc_files&__last_scrollable_table_row=3"}];
+					menuDiv.kendoMenu ({
+						dataSource: items,
+						orientation: 'vertical',
+						select: function (e) {
+							var selected_url = items [$(e.item).index()].url;
+							if (selected_url.match(/^javascript:/)) {
+								eval (selected_url);
+							}
+							menuDiv.remove ();
+						}
+					});
+
+					var width = menuDiv.width ();
+
+					window.setTimeout (function () {
+						menuDiv.width (width);
+					}, 100);
+
+//					$('a', menuDiv).each (function () {
+//						$(this).attr ('target', '_content_iframe');
+//					});
+
+					var kill = window.setTimeout (function () {
+						menuDiv.remove ()
+					}, 1500);
+
+					menuDiv.hover (
+						function () {
+							window.clearTimeout (kill);
+							menuDiv.width (width);
+						},
+						function () {
+							window.setTimeout (function () {
+								menuDiv.remove ()
+							}, 500);
+						}
+					);
+
+					return false;
+
+				})
+
+			
+
+				$(document.getElementById ('/&sid=8833004804009922000&__last_scrollable_table_row=3&id=1703&__tree=1&__last_query_string=29')).on ('contextmenu', function (e) {
+
+					e.stopPropagation ();
+
+					var menuDiv = $('<ul class="menuFonDark" title="" style="position:absolute;z-index:200;white-space:nowrap" />').appendTo (document.body);
+
+					menuDiv.css ({
+						top:  e.pageY,
+						left: e.pageX
+					});
+
+					var items = [{"imageUrl":"/i/ken/images/icons/edit.png","target":"_self","text":"Редактировать","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=4&id=1703&__tree=1&__last_query_string=29&type=doc_files&__last_scrollable_table_row=4"},{"imageUrl":"/i/ken/images/icons/delete.png","target":"_self","text":"Удалить","url":"javascript:if (confirm ('Удалить Требования_к_файлу_импорта_задолженности (csv)?')) {nope('/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=4&id=1703&__tree=1&__last_query_string=29&action=delete&type=doc_files', '_self')} else {document.body.style.cursor = 'default'; nop ();}"},{"imageUrl":"/i/_skins/Ken/i_copy.png?8833004804009922000","target":"invisible","text":"Создать версию","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=4&parent=1703&__tree=1&__last_query_string=29&action=create&type=doc_files&__last_scrollable_table_row=4"}];
+					menuDiv.kendoMenu ({
+						dataSource: items,
+						orientation: 'vertical',
+						select: function (e) {
+							var selected_url = items [$(e.item).index()].url;
+							if (selected_url.match(/^javascript:/)) {
+								eval (selected_url);
+							}
+							menuDiv.remove ();
+						}
+					});
+
+					var width = menuDiv.width ();
+
+					window.setTimeout (function () {
+						menuDiv.width (width);
+					}, 100);
+
+//					$('a', menuDiv).each (function () {
+//						$(this).attr ('target', '_content_iframe');
+//					});
+
+					var kill = window.setTimeout (function () {
+						menuDiv.remove ()
+					}, 1500);
+
+					menuDiv.hover (
+						function () {
+							window.clearTimeout (kill);
+							menuDiv.width (width);
+						},
+						function () {
+							window.setTimeout (function () {
+								menuDiv.remove ()
+							}, 500);
+						}
+					);
+
+					return false;
+
+				})
+
+			
+
+				$(document.getElementById ('/&sid=8833004804009922000&__last_scrollable_table_row=4&id=1704&__tree=1&__last_query_string=29')).on ('contextmenu', function (e) {
+
+					e.stopPropagation ();
+
+					var menuDiv = $('<ul class="menuFonDark" title="" style="position:absolute;z-index:200;white-space:nowrap" />').appendTo (document.body);
+
+					menuDiv.css ({
+						top:  e.pageY,
+						left: e.pageX
+					});
+
+					var items = [{"imageUrl":"/i/ken/images/icons/edit.png","target":"_self","text":"Редактировать","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=5&id=1704&__tree=1&__last_query_string=29&type=doc_files&__last_scrollable_table_row=5"},{"imageUrl":"/i/ken/images/icons/delete.png","target":"_self","text":"Удалить","url":"javascript:if (confirm ('Удалить Требования_к_файлу_импорта_номенклатуры (csv)?')) {nope('/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=5&id=1704&__tree=1&__last_query_string=29&action=delete&type=doc_files', '_self')} else {document.body.style.cursor = 'default'; nop ();}"},{"imageUrl":"/i/_skins/Ken/i_copy.png?8833004804009922000","target":"invisible","text":"Создать версию","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=5&parent=1704&__tree=1&__last_query_string=29&action=create&type=doc_files&__last_scrollable_table_row=5"}];
+					menuDiv.kendoMenu ({
+						dataSource: items,
+						orientation: 'vertical',
+						select: function (e) {
+							var selected_url = items [$(e.item).index()].url;
+							if (selected_url.match(/^javascript:/)) {
+								eval (selected_url);
+							}
+							menuDiv.remove ();
+						}
+					});
+
+					var width = menuDiv.width ();
+
+					window.setTimeout (function () {
+						menuDiv.width (width);
+					}, 100);
+
+//					$('a', menuDiv).each (function () {
+//						$(this).attr ('target', '_content_iframe');
+//					});
+
+					var kill = window.setTimeout (function () {
+						menuDiv.remove ()
+					}, 1500);
+
+					menuDiv.hover (
+						function () {
+							window.clearTimeout (kill);
+							menuDiv.width (width);
+						},
+						function () {
+							window.setTimeout (function () {
+								menuDiv.remove ()
+							}, 500);
+						}
+					);
+
+					return false;
+
+				})
+
+			
+
+				$(document.getElementById ('/&sid=8833004804009922000&__last_scrollable_table_row=5&id=1705&__tree=1&__last_query_string=29')).on ('contextmenu', function (e) {
+
+					e.stopPropagation ();
+
+					var menuDiv = $('<ul class="menuFonDark" title="" style="position:absolute;z-index:200;white-space:nowrap" />').appendTo (document.body);
+
+					menuDiv.css ({
+						top:  e.pageY,
+						left: e.pageX
+					});
+
+					var items = [{"imageUrl":"/i/ken/images/icons/edit.png","target":"_self","text":"Редактировать","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=6&id=1705&__tree=1&__last_query_string=29&type=doc_files&__last_scrollable_table_row=6"},{"imageUrl":"/i/ken/images/icons/delete.png","target":"_self","text":"Удалить","url":"javascript:if (confirm ('Удалить Формат загрузки расходных договоров (XML)?')) {nope('/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=6&id=1705&__tree=1&__last_query_string=29&action=delete&type=doc_files', '_self')} else {document.body.style.cursor = 'default'; nop ();}"},{"imageUrl":"/i/_skins/Ken/i_copy.png?8833004804009922000","target":"invisible","text":"Создать версию","url":"/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=6&parent=1705&__tree=1&__last_query_string=29&action=create&type=doc_files&__last_scrollable_table_row=6"}];
+					menuDiv.kendoMenu ({
+						dataSource: items,
+						orientation: 'vertical',
+						select: function (e) {
+							var selected_url = items [$(e.item).index()].url;
+							if (selected_url.match(/^javascript:/)) {
+								eval (selected_url);
+							}
+							menuDiv.remove ();
+						}
+					});
+
+					var width = menuDiv.width ();
+
+					window.setTimeout (function () {
+						menuDiv.width (width);
+					}, 100);
+
+//					$('a', menuDiv).each (function () {
+//						$(this).attr ('target', '_content_iframe');
+//					});
+
+					var kill = window.setTimeout (function () {
+						menuDiv.remove ()
+					}, 1500);
+
+					menuDiv.hover (
+						function () {
+							window.clearTimeout (kill);
+							menuDiv.width (width);
+						},
+						function () {
+							window.setTimeout (function () {
+								menuDiv.remove ()
+							}, 500);
+						}
+					);
+
+					return false;
+
+				})
+
+			;;numeroftables++;		try{
+			if (!$('#splitted_tree_window').length) {
+				$('#touch_welt .trLast').prevAll('tr').first().find('td').height('auto');
+			}
+		}
+		catch(e){};
+window.focus ();focus_on_input (''); try {top.edit_mode = 0} catch (e) {};$('form').submit (function () {$.blockUI ({onBlock: function(){ is_interface_is_locked = true; }, onUnblock: function(){ is_interface_is_locked = false; }, fadeIn: 0, message: '<h2><img src="/i/_skins/Ken/busy.gif"> Запрос отправлен на сервер</h2>'}); return true;});$('form[target^="invisible"]').submit (function () {
+	window.setInterval(poll_invisibles, 100);
+});
+
+kb_hooks [0] [115] = [handle_hotkey_href, {"data":"HASH(0xacde3c0)"}];
+kb_hooks [0] [27] = [handle_hotkey_href, {"data":"HASH(0xadcf4e4)"}];
+kb_hooks [1] [46] = [handle_hotkey_href, {"data":"HASH(0xae1e3a4)"}];
+kb_hooks [1] [1012] = [handle_hotkey_href, {"data":"HASH(0xad0847c)"}];
+kb_hooks [1] [1055] = [handle_hotkey_href, {"data":"HASH(0xacd05ac)"}];
+})
+</script>
+<script>; the_page_title = 'Фотон';;
+		function generate_no_href() {
+
+			var generate_no_href = '/?salt=283512404.866424&sid=8833004804009922000&__only_form=form&__only_tabindex=1,2&_generate_new_no=1&id=3012&__tree=1&__last_query_string=29&__only_field=prefix,no&type=docs' + '&_salt=' + Math.random();
+
+			var matter_fields = ["id_doc_kind"];
+			for (var i = 0; i < matter_fields.length; i++) {
+				var field = '_' + matter_fields [i];
+				var value = document.form[field]? document.form[field].value : '';
+				generate_no_href = generate_no_href + '&' + field + '=' + value;
+			}
+			return generate_no_href;
+		}
+;
+; scrollable_table_ids.push ('HASH0xad3f524');
+function poll_invisibles () {
+	var has_loading_iframes;
+	$('iframe[name^="invisible"]').each (function () {if (this.readyState == 'loading') has_loading_iframes = 1});
+	if (!has_loading_iframes) {
+		window.clearInterval(poll_invisibles);
+		$.unblockUI ();
+		is_interface_is_locked = false;
+		setCursor ();
+	}
+}
+
+var __read_only = 1;
+
+var edit_mode = null;
+
+var menu_md5 = "d3c3c32a8674473bd8d7f0ec3c36a0c7";
+
+var edit_mode_args = {"label":"Пожалуйста, сначала сохраните данные (Ctrl-Enter) или отмените ввод (Esc)"};
+
+var __last_last_query_string = 29;
+
+ $(document).bind ('mousedown', function (event) { var e = get_event (event); if (e.button == 2 && e.ctrlKey && !e.altKey && !e.shiftKey) nope (window.location.href + '&__dump=1', '_blank', 'toolbar=no,resizable=yes,scrollbars=yes');
+ }) 
+ $(document).bind ('keypress', function (event) {  if (!browser_is_msie && event.keyCode == 27) return false; }) 
+ $(window).bind ('beforeunload', function (event) {  setCursor (window, 'wait'); try {top.setCursor (top, 'wait')} catch (e) {}; }) 
+ $(document).bind ('keydown', function (event) {  lastKeyDownEvent = event; handle_basic_navigation_keys (); if (code_alt_ctrl (115, 0, 0)) return blockEvent (); }) </script>
+
+		</head><body bottommargin="0" topmargin="0" name="body" marginwidth="0" bgcolor="transparent" rightmargin="0" class="refer" id="body" leftmargin="0" marginheight="0"><style>#touch_welt td {vertical-align: top;}</style><table id="touch_welt" cellspacing="0" cellpadding="0" width="100%" height="100%" border="0" style="height: 984px; visibility: visible;"><tbody>
+
+					<tr><td style="height:20px;"><!-- begin --><div class="k-grouping-header fixed-header">&nbsp;
+<div class="bgBreadcrumbsIcon" style="background-image:url(/i/_skins/Ken/path_folder.png?8833004804009922000)"></div><a class="path" tabindex="-1">Документы</a>&nbsp;/&nbsp;<a class="path" tabindex="-1">Нужные документы</a>&nbsp;/&nbsp;<a class="path" tabindex="-1">Модули Eludia</a>&nbsp;/&nbsp;<a class="path" tabindex="-1">Интеграция с другими</a>&nbsp;/&nbsp;<a class="path" tabindex="-1">Импорт</a>&nbsp;</div>
+		</td></tr><tr><td style="height:20px;"><div class="k-widget k-header k-tabstrip">
+				<ul class="k-tabstrip-items k-reset tabbb"><li class="k-state-active k-item k-tab-on-top k-state-default k-first">
+					<a id="HASH(0xade58ac)" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&id=3012&__tree=1&q=&type=docs&is_actual=0&__last_query_string=28&__last_scrollable_table_row=0" class="tab-1 k-link" target=""><nobr>&nbsp;Документ&nbsp;</nobr></a>
+				</li><li class="k-item k-state-default">
+					<a id="HASH(0xae1c7c8)" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&id=3012&__tree=1&q=&type=doc_msgs&is_actual=0&__last_query_string=28&__last_scrollable_table_row=0" class="tab-0 k-link" target=""><nobr>&nbsp;Переписка&nbsp;</nobr></a>
+				</li><li class="k-item k-state-default">
+					<a id="HASH(0xad220cc)" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&id=3012&__tree=1&q=&type=doc_tasks&is_actual=0&__last_query_string=28&__last_scrollable_table_row=0" class="tab-0 k-link" target=""><nobr>&nbsp;Задачи&nbsp;</nobr></a>
+				</li></ul>
+		</div></td></tr>
+			<!-- brgin --><tr><td style="height:1px;"><form name="form" target="invisible" method="post" enctype="" action="http://photon-ken-mgruzdev.cheby.ru/">
+			<input type="hidden" name="__suggest" value="">
+<input name="id_task" type="hidden"><input value="0" name="is_actual" type="hidden"><input name="can_close_window" type="hidden"><input name="keep_filters" type="hidden"><input value="8833004804009922000" name="sid" type="hidden"><input value="1206543958.99642" name="__salt" type="hidden"><input name="select" type="hidden"><input name="__no_navigation" type="hidden"><input value="1" name="__tree" type="hidden"><input value="docs" name="type" type="hidden"><input value="3012" name="id" type="hidden"><input value="update" name="action" type="hidden"><input value="28" name="__last_query_string" type="hidden"><input value="0" name="__last_scrollable_table_row" type="hidden"><div class="banner">ДОКУМЕНТ</div><!-- start panel --><div class="scroll"><div class="k-virtual-scrollable-wrap2"><div class="cart-div"><table class="bContentTables" style="overflow:hidden;" cellspacing="0" cellpadding="0"><tbody><tr id="tr_81e8175e00ef3608cb219466739ac99b" class="cart-table-row"><td nowrap="1" class="form-passive-label">Номер:</td><td colspan="1" class="form-passive-inputs"><nobr><span id="input_no">21</span>&nbsp;</nobr></td><td nowrap="1" class="form-passive-label">Дата документа:</td><td colspan="1" class="form-passive-inputs"><span id="input_dt">06.07.2012</span></td></tr><tr id="tr_id_doc_type" class="cart-table-row"><td nowrap="1" class="form-passive-label">Тип документа:</td><td colspan="3" class="form-passive-inputs"><span id="input_id_doc_type">Документ</span></td></tr><tr id="tr_label" class="cart-table-row"><td nowrap="1" class="form-passive-label">Содержание:</td><td colspan="3" class="form-passive-inputs"><span id="input_label">Импорт<input value="Импорт" name="_label" type="hidden"></span></td></tr><tr id="tr_id_doc_folder" class="cart-table-row"><td nowrap="1" class="form-passive-label">Каталог:</td><td colspan="3" class="form-passive-inputs"><span id="input_id_doc_folder">Нужные документы / Модули Eludia / Интеграция с другими<input value="100043" name="_id_doc_folder" type="hidden"></span></td></tr><tr id="tr_id_doc_status" class="cart-table-row"><td nowrap="1" class="form-passive-label">Статус:</td><td colspan="3" class="form-passive-inputs"><span id="input_id_doc_status">Нужный</span></td></tr></tbody></table></div></div></div><!-- end panel --></form>		<table cellspacing="0" cellpadding="0" width="100%" border="0" id="toolbar_180917716">
+			<tbody><tr>
+				<td>
+					<table cellspacing="0" cellpadding="0" width="100%" border="0">
+						<tbody><tr>
+							<td colspan="13"><div style="height:8px;"></div></td>
+						</tr>
+						<tr>
+							<td width="45%">
+								<table cellspacing="0" cellpadding="0" width="100%" border="0">
+									<tbody><tr>
+										<td><img src="0.gif" width="1" border="0"></td>
+									</tr>
+								</tbody></table>
+							</td>
+		<td nowrap="">
+			<a class="k-button" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__edit=1&id=3012&__tree=1&__last_query_string=28&q=&type=docs&is_actual=0&__last_scrollable_table_row=0" id="HASH(0xacde3c0)" target="">
+				<nobr>
+				<img src="edit.png" border="0" hspace="0" style="vertical-align:middle;">
+				</nobr>
+				<nobr>
+					&nbsp;
+				</nobr>
+				<nobr class="smallizer_text">
+					редактировать (F4)
+				</nobr>
+			</a>
+		</td>
+		<td><img src="0.gif" width="10" border="0"></td>
+
+
+		<td nowrap="">
+			<a class="k-button" href="javascript:if(!is_dirty||(is_dirty&&confirm('Уйти без сохранения данных?'))){nope('/?salt=283512404.866424&sid=8833004804009922000&id_doc_folder=100043&__scrollable_table_row=0&__tree=1&__last_query_string=25&type=docs&__next_query_string=29','_self')}else{document.body.style.cursor = 'default';nop()}" id="HASH(0xadcf4e4)" target="">
+				<nobr>
+				<img src="cancel.png" border="0" hspace="0" style="vertical-align:middle;">
+				</nobr>
+				<nobr>
+					&nbsp;
+				</nobr>
+				<nobr class="smallizer_text">
+					вернуться (Esc)
+				</nobr>
+			</a>
+		</td>
+		<td><img src="0.gif" width="10" border="0"></td>
+
+
+		<td nowrap="">
+			<a class="k-button" href="javascript:if(confirm('Удалить этот документ, вы уверены?')){nope('/?salt=283512404.866424&sid=8833004804009922000&id=3012&__tree=1&__last_query_string=28&q=&action=delete&type=docs&__last_scrollable_table_row=0&is_actual=0','invisible')}else{document.body.style.cursor = 'default';nop()}" id="HASH(0xae1e3a4)" target="">
+				<nobr>
+				<img src="delete.png" border="0" hspace="0" style="vertical-align:middle;">
+				</nobr>
+				<nobr>
+					&nbsp;
+				</nobr>
+				<nobr class="smallizer_text">
+					удалить (Ctrl-Del)
+				</nobr>
+			</a>
+		</td>
+		<td><img src="0.gif" width="10" border="0"></td>
+
+
+							<td width="45%">
+								<table cellspacing="0" cellpadding="0" width="100%" border="0">
+									<tbody><tr>
+										<td><img src="0.gif" width="1" border="0"></td>
+									</tr>
+								</tbody></table>
+							</td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+		</tbody></table><!-- end --></td></tr>
+
+				<tr><td style="height:34px;"><div class="k-grouping-header top5"><h4>Файлы</h4></div><!-- begin block table-->
+
+		
+			</td></tr><tr><td style="height:20px;"><!-- begin form --><form action="http://photon-ken-mgruzdev.cheby.ru/" name="toolbar_form" target="">
+<input value="8833004804009922000" name="sid" type="hidden"><input value="q,fake,is_actual," name="__toolbar_inputs" type="hidden"><input value="3012" name="id" type="hidden"><input value="28" name="__last_last_query_string" type="hidden"><input name="select" type="hidden"><input name="id_task" type="hidden"><input name="value" type="hidden"><input value="1" name="__tree" type="hidden"><input name="can_close_window" type="hidden"><input value="29" name="__last_query_string" type="hidden"><input value="docs" name="type" type="hidden"><input value="0" name="__last_scrollable_table_row" type="hidden">	<ul class="filters">
+		<li class="bgr0">
+		<a tabindex="-1" class="k-button" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&id_doc=3012&id_task=&__tree=1&__last_query_string=29&action=create&type=doc_files" id="HASH(0xad0847c)" target="" title=""><nobr>
+<img src="i_create.png" alt="" border="0" hspace="0" style="vertical-align:middle;"><span style="vertical-align:middle;">
+				<u>Д</u>обавить
+					</span></nobr>
+				</a>
+		</li>
+
+		<li class="bgr0">
+		<a tabindex="-1" class="k-button" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&id=3012&id_task=&__tree=1&__last_query_string=29&type=doc_files_batch_upload" id="HASH(0xacd05ac)" target="" title=""><nobr>
+<img src="i_create.png" alt="" border="0" hspace="0" style="vertical-align:middle;"><span style="vertical-align:middle;">
+				Добавить с<u>п</u>иском
+					</span></nobr>
+				</a>
+		</li>
+
+<li nowrap="" class="toolbar" valign="middle"><span class="get_down_the_text">Поиск: 		</span>
+		<input onkeypress="if (event.keyCode == 13) {form.submit(); blockEvent ()};" type="text" size="15" name="q" value="" onfocus="scrollable_table_is_blocked = true; q_is_focused = true" onblur="scrollable_table_is_blocked = false; q_is_focused = false" class="k-textbox" id="HASH(0xacf7f0c)">
+</li><li class="toolbar nowrap"><span class="get_down_the_text_1">		<span style="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="fake_select_listbox" aria-busy="false" aria-activedescendant="fake_select_option_selected"><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input">Активные</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span></span><select name="fake" id="fake_select" onchange="submit();" onkeypress="typeAhead(1)" data-role="dropdownlist" style="display: none;"><option value="">Активные</option><option value="0,-1">Все</option><option value="-1">Удалённые</option></select></span></span></li><li class="toolbar nowrap"><span class="get_down_the_text_1">		<span style="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="is_actual_select_listbox" aria-busy="false" aria-activedescendant="is_actual_select_option_selected"><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input">Актуально</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span></span><select name="is_actual" id="is_actual_select" onchange="submit();" onkeypress="typeAhead(1)" data-role="dropdownlist" style="display: none;"><option value="0">Актуально</option><option value="1">Все</option></select></span></span></li>	</ul>
+	</form><!-- end form--></td></tr><tr><td style="height: auto;" data-reload="yes">
+
+
+		<form name="f2" action="http://photon-ken-mgruzdev.cheby.ru/" method="post" target="invisible">
+		<input type="hidden" name="__suggest" value="">
+		
+<input value="8833004804009922000" name="sid" type="hidden">
+<input value="3012" name="id" type="hidden">
+<input value="1149951967.59368" name="salt" type="hidden">
+<input value="RUS" name="lang" type="hidden">
+<input value="1" name="__tree" type="hidden">
+<input value="28" name="__last_query_string" type="hidden">
+<input value="283512404.866424" name="__salt" type="hidden">
+<input name="q" type="hidden">
+<input value="add" name="action" type="hidden">
+<input value="docs" name="type" type="hidden">
+<input value="0" name="is_actual" type="hidden">
+<input value="0" name="__last_scrollable_table_row" type="hidden">
+		<table cellspacing="0" cellpadding="0" width="100%">
+			<tbody><tr>
+<td class="bgr8" style="height: auto;"><div class="table-container HASH0xad3f524" style="width: 1591px;">
+<script>
+	$(document).ready(function(){
+		var indent = ($.browser.msie && $.browser.version == '8.0') ? 35 : 25;/**/
+		if (window.navigator.platform === "Win32") {
+			try {
+
+				var widthtable;
+				widthtable = $(window.parent.document.getElementById( "tabstrip" )).width();
+				if (widthtable < 20) {
+					widthtable = $(window.parent.document).find('iframe').width() ? $(window.parent.document).find('iframe').width() : $(window).width()
+				}
+				$('.table-container.HASH0xad3f524').css('width', widthtable - indent);
+
+				/********************* patch thead **********************/
+				var countTd = $('#HASH0xad3f524 > thead tr:first').find('th').length;
+				$('#HASH0xad3f524 > thead tr').each(function (i){
+					if($(this).hasClass('displaynone') == false){
+						if($(this).find('th').attr('class') === undefined){
+							$(this).detach();
+						}
+					} else {
+						if(countTd == 0){
+							$(this).detach();
+						} else {
+							$(this).next().find('th').css('border-top-width', '0px');
+						}
+					}
+				})
+				$('#HASH0xad3f524 > thead tr:last th').each(function (i){
+					$(this).attr('rowspan', '1');
+				})
+				$('#HASH0xad3f524 thead tr:first th').each(function (i){
+					var num = i + 1;
+					var CellTh = "#HASH0xad3f524 tr th:nth-child(" + num + ")";
+					var CellTd = "#HASH0xad3f524 tr td:nth-child(" + num + ")";
+					$(CellTh).addClass("col" + num);
+					$(CellTd).attr("data-col", num);
+					$(CellTd).addClass("col" + num);
+				})
+				if(countTd > 0){
+					$('#HASH0xad3f524 > tbody tr').each(function (i){
+						var tbodyAddTd = "";
+						var countTdStr = $(this).find('td').length;
+						for (var i = 0; i < countTd - countTdStr; i++) {
+							tbodyAddTd += "<td style='display:none;'></td>";
+						}
+						$(this).prepend(tbodyAddTd);
+						if(countTd != countTdStr){
+							$(this).addClass('noCol');
+						}
+					})
+					$('#HASH0xad3f524 > thead tr').each(function (i){
+						var countThStr = $(this).find('th').length;
+						if(countTd != countThStr){
+							$(this).addClass('noCol');
+						}
+					})
+				}
+				/*$('<style type="text/css">.HASH0xad3f524 .noCol th{width:auto!important; min-width:auto!important;}</style>').appendTo($('head')); */
+				/***********************************************************/
+				$('#HASH0xad3f524').removeClass('bContentTables').addClass('bContentTables2');
+
+				$('#HASH0xad3f524').dataTable({
+					'sScrollY': '400px',
+					'sScrollX': '100%',
+					'bFilter': false,
+					'bScrollCollapse': true,
+					'bPaginate': false,
+					'bSort':false
+				});
+
+				tableSlider.set_row (0);
+
+			} catch (err) {}
+
+		}
+	});
+</script>
+<div id="HASH0xad3f524_wrapper" class="dataTables_wrapper" role="grid"><div class="dataTables_scroll"><div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;"><div class="dataTables_scrollHeadInner" style="width: 1590px; padding-right: 0px;"><table class="display bContentTables2 dataTable" cellspacing="0" cellpadding="0" style="margin-left: 0px; width: 1590px;"><thead><tr class="displaynone k-grid-header2" role="row"><th class="row-cell-header col1" rowspan="1" colspan="1" style="width: 401px;"></th><th class="row-cell-header col2" rowspan="1" colspan="1" style="width: 93px;"></th><th class="row-cell-header col3" rowspan="1" colspan="1" style="width: 102px;"></th><th class="row-cell-header col4" rowspan="1" colspan="1" style="width: 455px;"></th><th class="row-cell-header col5" rowspan="1" colspan="1" style="width: 119px;"></th><th class="row-cell-header col6" rowspan="1" colspan="1" style="width: 87px;"></th><th class="row-cell-header col7" rowspan="1" colspan="1" style="width: 168px;"></th><th class="row-cell-header col8" rowspan="1" colspan="1" style="width: 77px;"></th></tr><tr class="k-grid-header2" role="row"><th rowspan="1" colspan="1" class="row-cell-header col1 sorting_disabled" title="Наименование" style="border-top-width: 0px; width: 401px;" role="columnheader"><a class="k-link" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&order=label&desc=0&id=3012&__last_last_query_string=28&__tree=1&__last_query_string=29&q=&type=docs&__last_scrollable_table_row=0&is_actual=0"><b><span class="down_text order">Наименование</span></b></a>&nbsp;</th><th rowspan="1" colspan="1" class="row-cell-header col2 sorting_disabled" title="Версия" style="border-top-width: 0px; width: 93px;" role="columnheader"><a class="k-link" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&order=version&desc=0&id=3012&__last_last_query_string=28&__tree=1&__last_query_string=29&q=&type=docs&__last_scrollable_table_row=0&is_actual=0"><b><span class="down_text order">Версия</span></b></a>&nbsp;</th><th rowspan="1" colspan="1" class="row-cell-header col3 sorting_disabled" title="Актуально" style="border-top-width: 0px; width: 102px;" role="columnheader">&nbsp;Актуально&nbsp;</th><th rowspan="1" colspan="1" class="row-cell-header col4 sorting_disabled" title="Файл" style="border-top-width: 0px; width: 455px;" role="columnheader">&nbsp;Файл&nbsp;</th><th rowspan="1" colspan="1" class="row-cell-header col5 sorting_disabled" title="Примечание" style="border-top-width: 0px; width: 119px;" role="columnheader">&nbsp;Примечание&nbsp;</th><th rowspan="1" colspan="1" class="row-cell-header col6 sorting_disabled" title="Изменил" style="border-top-width: 0px; width: 87px;" role="columnheader">&nbsp;Изменил&nbsp;</th><th rowspan="1" colspan="1" class="row-cell-header col7 sorting_disabled" title="Дата изменения" style="border-top-width: 0px; width: 168px;" role="columnheader"><a class="k-link" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&order=dt&desc=0&id=3012&__last_last_query_string=28&__tree=1&__last_query_string=29&q=&type=docs&__last_scrollable_table_row=0&is_actual=0"><b><span class="down_text order">Дата изменения</span></b></a>&nbsp;</th><th rowspan="1" colspan="1" class="row-cell-header col8 sorting_disabled" title="Размер" style="border-top-width: 0px; width: 77px;" role="columnheader">&nbsp;Размер&nbsp;</th></tr></thead></table></div></div><div class="dataTables_scrollBody" style="overflow: auto; width: 100%; height: 193px; min-height: 200px;" def_height="200"><table id="HASH0xad3f524" class="display bContentTables2 dataTable" cellspacing="0" cellpadding="0" aria-describedby="HASH0xad3f524_info" style="margin-left: 0px; width: 1590px;"><thead><tr class="displaynone k-grid-header2" role="row" style="height: 0px;"><th class="row-cell-header col1" rowspan="1" colspan="1" style="width: 401px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"></th><th class="row-cell-header col2" rowspan="1" colspan="1" style="width: 93px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"></th><th class="row-cell-header col3" rowspan="1" colspan="1" style="width: 102px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"></th><th class="row-cell-header col4" rowspan="1" colspan="1" style="width: 455px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"></th><th class="row-cell-header col5" rowspan="1" colspan="1" style="width: 119px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"></th><th class="row-cell-header col6" rowspan="1" colspan="1" style="width: 87px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"></th><th class="row-cell-header col7" rowspan="1" colspan="1" style="width: 168px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"></th><th class="row-cell-header col8" rowspan="1" colspan="1" style="width: 77px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"></th></tr><tr class="k-grid-header2" role="row" style="height: 0px;"><th rowspan="1" colspan="1" class="row-cell-header col1 sorting_disabled" title="Наименование" style="border-top-width: 0px; width: 401px; padding-top: 0px; padding-bottom: 0px; border-bottom-width: 0px; height: 0px;" role="columnheader"></th><th rowspan="1" colspan="1" class="row-cell-header col2 sorting_disabled" title="Версия" style="border-top-width: 0px; width: 93px; padding-top: 0px; padding-bottom: 0px; border-bottom-width: 0px; height: 0px;" role="columnheader"></th><th rowspan="1" colspan="1" class="row-cell-header col3 sorting_disabled" title="Актуально" style="border-top-width: 0px; width: 102px; padding-top: 0px; padding-bottom: 0px; border-bottom-width: 0px; height: 0px;" role="columnheader"></th><th rowspan="1" colspan="1" class="row-cell-header col4 sorting_disabled" title="Файл" style="border-top-width: 0px; width: 455px; padding-top: 0px; padding-bottom: 0px; border-bottom-width: 0px; height: 0px;" role="columnheader"></th><th rowspan="1" colspan="1" class="row-cell-header col5 sorting_disabled" title="Примечание" style="border-top-width: 0px; width: 119px; padding-top: 0px; padding-bottom: 0px; border-bottom-width: 0px; height: 0px;" role="columnheader"></th><th rowspan="1" colspan="1" class="row-cell-header col6 sorting_disabled" title="Изменил" style="border-top-width: 0px; width: 87px; padding-top: 0px; padding-bottom: 0px; border-bottom-width: 0px; height: 0px;" role="columnheader"></th><th rowspan="1" colspan="1" class="row-cell-header col7 sorting_disabled" title="Дата изменения" style="border-top-width: 0px; width: 168px; padding-top: 0px; padding-bottom: 0px; border-bottom-width: 0px; height: 0px;" role="columnheader"></th><th rowspan="1" colspan="1" class="row-cell-header col8 sorting_disabled" title="Размер" style="border-top-width: 0px; width: 77px; padding-top: 0px; padding-bottom: 0px; border-bottom-width: 0px; height: 0px;" role="columnheader"></th></tr></thead>
+<tbody role="alert" aria-live="polite" aria-relevant="all"><tr id="/&amp;sid=8833004804009922000&amp;id=1699&amp;__tree=1&amp;__last_query_string=29" oncontextmenu="open_popup_menu(event, &#39;HASH(0xadd6a3c)&#39;); return blockEvent ();" class="odd"><td title="импорт выписки 1c_to_Eludia" class="row-cell col1 " data-col="1" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=0&id=1699&id_task=&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">импорт выписки 1c_to_Eludia</a></div></td><td title="1" class="row-cell col2 " data-col="2" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=0&id=1699&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">1</a></div></td><td title="Да" class="row-cell col3 " data-col="3" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=0&id=1699&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Да</a></div></td><td title="импорт выписки 1c_to_Eludia.txt" class="row-cell col4 " data-col="4" style="height: auto;"><div class="nobrTd"><a id="" class="form-very-active-inputs" onclick="window.document.body.onbeforeunload = function() {document.body.style.cursor = &#39;default&#39;;}; void(0);" target="invisible" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=0&id=1699&__tree=1&__last_query_string=29&action=download&type=doc_files" onfocus="blur()">импорт выписки 1c_to_Eludia.txt</a></div></td><td class="row-cell col5 " data-col="5" style="height: auto;">&nbsp;</td><td class="row-cell col6 " data-col="6" style="height: auto;">&nbsp;</td><td class="row-cell col7 " data-col="7" style="height: auto;">&nbsp;</td><td align="right" title="1482" class="row-cell col8 " data-col="8" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=0&id=1699&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">1 482</a></div></td></tr><tr id="/&amp;sid=8833004804009922000&amp;__last_scrollable_table_row=0&amp;id=1700&amp;__tree=1&amp;__last_query_string=29" oncontextmenu="open_popup_menu(event, &#39;HASH(0xad31720)&#39;); return blockEvent ();" class="even"><td title="Требования к файлу загрузки контрагентов (csv)" class="row-cell col1 " data-col="1" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=1&id=1700&id_task=&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Требования к файлу загрузки контрагентов (csv)</a></div></td><td title="1" class="row-cell col2 " data-col="2" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=1&id=1700&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">1</a></div></td><td title="Да" class="row-cell col3 " data-col="3" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=1&id=1700&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Да</a></div></td><td title="Требования к файлу загрузки контрагентов (csv).txt" class="row-cell col4 " data-col="4" style="height: auto;"><div class="nobrTd"><a id="" class="form-very-active-inputs" onclick="window.document.body.onbeforeunload = function() {document.body.style.cursor = &#39;default&#39;;}; void(0);" target="invisible" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=1&id=1700&__tree=1&__last_query_string=29&action=download&type=doc_files" onfocus="blur()">Требования к файлу загрузки контрагентов (csv).txt</a></div></td><td class="row-cell col5 " data-col="5" style="height: auto;">&nbsp;</td><td class="row-cell col6 " data-col="6" style="height: auto;">&nbsp;</td><td class="row-cell col7 " data-col="7" style="height: auto;">&nbsp;</td><td align="right" title="3789" class="row-cell col8 " data-col="8" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=1&id=1700&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">3 789</a></div></td></tr><tr id="/&amp;sid=8833004804009922000&amp;__last_scrollable_table_row=1&amp;id=1701&amp;__tree=1&amp;__last_query_string=29" oncontextmenu="open_popup_menu(event, &#39;HASH(0xad316bc)&#39;); return blockEvent ();" class="odd"><td title="Требования к файлу загрузки контрагентов (XML)" class="row-cell col1 " data-col="1" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=2&id=1701&id_task=&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Требования к файлу загрузки контрагентов (XML)</a></div></td><td title="1" class="row-cell col2 " data-col="2" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=2&id=1701&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">1</a></div></td><td title="Да" class="row-cell col3 " data-col="3" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=2&id=1701&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Да</a></div></td><td title="Требования к файлу загрузки контрагентов (XML).txt" class="row-cell col4 " data-col="4" style="height: auto;"><div class="nobrTd"><a id="" class="form-very-active-inputs" onclick="window.document.body.onbeforeunload = function() {document.body.style.cursor = &#39;default&#39;;}; void(0);" target="invisible" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=2&id=1701&__tree=1&__last_query_string=29&action=download&type=doc_files" onfocus="blur()">Требования к файлу загрузки контрагентов (XML).txt</a></div></td><td class="row-cell col5 " data-col="5" style="height: auto;">&nbsp;</td><td class="row-cell col6 " data-col="6" style="height: auto;">&nbsp;</td><td class="row-cell col7 " data-col="7" style="height: auto;">&nbsp;</td><td align="right" title="1900" class="row-cell col8 " data-col="8" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=2&id=1701&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">1 900</a></div></td></tr><tr id="/&amp;sid=8833004804009922000&amp;__last_scrollable_table_row=2&amp;id=1702&amp;__tree=1&amp;__last_query_string=29" oncontextmenu="open_popup_menu(event, &#39;HASH(0xacddc7c)&#39;); return blockEvent ();" class="even"><td title="Требования к файлу загрузки накладных (XML)" class="row-cell col1 " data-col="1" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=3&id=1702&id_task=&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Требования к файлу загрузки накладных (XML)</a></div></td><td title="1" class="row-cell col2 " data-col="2" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=3&id=1702&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">1</a></div></td><td title="Да" class="row-cell col3 " data-col="3" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=3&id=1702&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Да</a></div></td><td title="Требования к файлу загрузки накладных (XML).txt" class="row-cell col4 " data-col="4" style="height: auto;"><div class="nobrTd"><a id="" class="form-very-active-inputs" onclick="window.document.body.onbeforeunload = function() {document.body.style.cursor = &#39;default&#39;;}; void(0);" target="invisible" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=3&id=1702&__tree=1&__last_query_string=29&action=download&type=doc_files" onfocus="blur()">Требования к файлу загрузки накладных (XML).txt</a></div></td><td class="row-cell col5 " data-col="5" style="height: auto;">&nbsp;</td><td class="row-cell col6 " data-col="6" style="height: auto;">&nbsp;</td><td class="row-cell col7 " data-col="7" style="height: auto;">&nbsp;</td><td align="right" title="3010" class="row-cell col8 " data-col="8" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=3&id=1702&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">3 010</a></div></td></tr><tr id="/&amp;sid=8833004804009922000&amp;__last_scrollable_table_row=3&amp;id=1703&amp;__tree=1&amp;__last_query_string=29" oncontextmenu="open_popup_menu(event, &#39;HASH(0xac7800c)&#39;); return blockEvent ();" class="odd"><td title="Требования_к_файлу_импорта_задолженности (csv)" class="row-cell col1 " data-col="1" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=4&id=1703&id_task=&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Требования_к_файлу_импорта_задолженности (csv)</a></div></td><td title="1" class="row-cell col2 " data-col="2" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=4&id=1703&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">1</a></div></td><td title="Да" class="row-cell col3 " data-col="3" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=4&id=1703&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Да</a></div></td><td title="Требования_к_файлу_импорта_задолженности (csv).txt" class="row-cell col4 " data-col="4" style="height: auto;"><div class="nobrTd"><a id="" class="form-very-active-inputs" onclick="window.document.body.onbeforeunload = function() {document.body.style.cursor = &#39;default&#39;;}; void(0);" target="invisible" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=4&id=1703&__tree=1&__last_query_string=29&action=download&type=doc_files" onfocus="blur()">Требования_к_файлу_импорта_задолженности (csv).txt</a></div></td><td class="row-cell col5 " data-col="5" style="height: auto;">&nbsp;</td><td class="row-cell col6 " data-col="6" style="height: auto;">&nbsp;</td><td class="row-cell col7 " data-col="7" style="height: auto;">&nbsp;</td><td align="right" title="4983" class="row-cell col8 " data-col="8" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=4&id=1703&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">4 983</a></div></td></tr><tr id="/&amp;sid=8833004804009922000&amp;__last_scrollable_table_row=4&amp;id=1704&amp;__tree=1&amp;__last_query_string=29" oncontextmenu="open_popup_menu(event, &#39;HASH(0xac80a68)&#39;); return blockEvent ();" class="even"><td title="Требования_к_файлу_импорта_номенклатуры (csv)" class="row-cell col1 " data-col="1" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=5&id=1704&id_task=&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Требования_к_файлу_импорта_номенклатуры (csv)</a></div></td><td title="1" class="row-cell col2 " data-col="2" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=5&id=1704&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">1</a></div></td><td title="Да" class="row-cell col3 " data-col="3" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=5&id=1704&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Да</a></div></td><td title="Требования_к_файлу_импорта_номенклатуры (csv).txt" class="row-cell col4 " data-col="4" style="height: auto;"><div class="nobrTd"><a id="" class="form-very-active-inputs" onclick="window.document.body.onbeforeunload = function() {document.body.style.cursor = &#39;default&#39;;}; void(0);" target="invisible" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=5&id=1704&__tree=1&__last_query_string=29&action=download&type=doc_files" onfocus="blur()">Требования_к_файлу_импорта_номенклатуры (csv).txt</a></div></td><td class="row-cell col5 " data-col="5" style="height: auto;">&nbsp;</td><td class="row-cell col6 " data-col="6" style="height: auto;">&nbsp;</td><td class="row-cell col7 " data-col="7" style="height: auto;">&nbsp;</td><td align="right" title="8388" class="row-cell col8 " data-col="8" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=5&id=1704&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">8 388</a></div></td></tr><tr id="/&amp;sid=8833004804009922000&amp;__last_scrollable_table_row=5&amp;id=1705&amp;__tree=1&amp;__last_query_string=29" oncontextmenu="open_popup_menu(event, &#39;HASH(0xad1083c)&#39;); return blockEvent ();" class="odd"><td title="Формат загрузки расходных договоров (XML)" class="row-cell col1 " data-col="1" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=6&id=1705&id_task=&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Формат загрузки расходных договоров (XML)</a></div></td><td title="1" class="row-cell col2 " data-col="2" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=6&id=1705&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">1</a></div></td><td title="Да" class="row-cell col3 " data-col="3" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=6&id=1705&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">Да</a></div></td><td title="Формат загрузки расходных договоров (XML).txt" class="row-cell col4 " data-col="4" style="height: auto;"><div class="nobrTd"><a id="" class="form-very-active-inputs" onclick="window.document.body.onbeforeunload = function() {document.body.style.cursor = &#39;default&#39;;}; void(0);" target="invisible" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=6&id=1705&__tree=1&__last_query_string=29&action=download&type=doc_files" onfocus="blur()">Формат загрузки расходных договоров (XML).txt</a></div></td><td class="row-cell col5 " data-col="5" style="height: auto;">&nbsp;</td><td class="row-cell col6 " data-col="6" style="height: auto;">&nbsp;</td><td class="row-cell col7 " data-col="7" style="height: auto;">&nbsp;</td><td align="right" title="4352" class="row-cell col8 " data-col="8" style="height: auto;"><div class="nobrTd"><a id="" class="row-cell" target="" href="http://photon-ken-mgruzdev.cheby.ru/?salt=283512404.866424&sid=8833004804009922000&__last_scrollable_table_row=6&id=1705&__tree=1&__last_query_string=29&type=doc_files" onfocus="blur()">4 352</a></div></td></tr></tbody></table></div><div class="resizehandle" style="background-image: none;cursor: auto;"></div></div><div class="dataTables_info" id="HASH0xad3f524_info">Showing 1 to 7 of 7 entries</div></div></div></td></tr></tbody></table></form><!-- end block table--></td></tr>
+
+
+		
+<tr class="trLast"><td style="height:1px;">
+<script>
+	$(document).ready(function(){
+		var SelectThemeChooser;
+		function sessionStoragesetItem(per, znach) {
+			try {
+				sessionStorage.setItem(per, znach);
+			} catch (err) { }
+		}
+		function sessionStoragetItem(per, znach) {
+			var ElSessionStora;
+			try {
+				ElSessionStora = sessionStorage.getItem(per);
+			} catch (err) { }
+			ElSessionStora = ElSessionStora || znach;
+			sessionStoragesetItem(per, ElSessionStora);
+			return ElSessionStora;
+		}
+		SelectThemeChooser = sessionStoragetItem('kendoSkin', 'silver');
+
+		var select_tranform = function(){
+			$(this).kendoDropDownList({
+				height: 320
+			}).data('kendoDropDownList').list.width('auto');
+		}
+		$('select').not('#_setting__suggest, #_id_filter__suggest').each(select_tranform).change(select_tranform);
+
+		$('[data-type=datepicker]').kendoDatePicker();
+		$('[data-type=datetimepicker]').kendoDateTimePicker();
+
+                $('input[type=file]').each(function () {
+                    $(this).kendoUpload({
+                           multiple : $(this).attr('data-ken-multiple') == 'true'
+                     });
+                });
+
+		$('.dataTables_scrollBody').each(function (i) {
+			$(this).resizer();
+		})
+		/********************************************************
+		$(window.top.document).find('#tabstrip .k-content').find('iframe').css('visibility', 'visible');
+		$('#idbody').next().css('margin-top', '0px');
+		if(navigator.userAgent.match(/iPad/i) != null){
+			if ('ontouchstart' in document.documentElement){
+				$('html').addClass('touch');
+				var ontouchcontentheight = $(window.top.document.getElementById( 'bTbody2' )).height();
+				var ontouchcontentwidth = $(window.top.document.getElementById( 'tabstrip' )).width();
+				var TAB_HEIGHT_PX = 36;
+				$('#touch_welt').css({'height': ontouchcontentheight - TAB_HEIGHT_PX, 'width': ontouchcontentwidth});
+			}
+		} else if(navigator.userAgent.match(/android/i) === null){
+			$('body').append('<style>.scroll {width: auto;height:100%;overflow: hidden;}.scroll2 .k-grid-header2, .draggablee {cursor: w-resize;}.scroll2 {width: auto;height:100%;overflow: hidden;}.k-virtual-scrollable-wrap2 {height: 100%;overflow-y: hidden;position: relative;}.k-virtual-scrollable-wrap2 {overflow-x: auto;}</style>');
+		}
+		******************************************************/
+			$('#touch_welt tr:first').find('.top5').css('margin-top', '0px');
+			$('html').addClass('touch');
+			//var ontouchcontentheight = $(window.parent.document).find('iframe').height() ? $(window.parent.document).find('iframe').height() : $(window).height();
+			//$('#touch_welt').css({'height': ontouchcontentheight});
+		/*****************************************************/
+		$('#touch_welt').css('visibility', 'hidden');
+		setTimeout(function (){
+			$('#touch_welt').css('visibility', 'visible');
+			try {tableSlider.cell_on ();} catch(e) {};
+
+		},10);
+
+		$(window).on('resize', function () {
+			var indent = $.browser.msie ? 35 : 25;
+			var ontouchcontentheight = $(window.parent.document).find('iframe').height() ? $(window.parent.document).find('iframe').height() : $(window).height();
+			$('#touch_welt').css({'height': ontouchcontentheight});
+			var widthtable2;
+			widthtable2 = $(window.parent.document.getElementById( 'tabstrip' )).width();
+			if (widthtable2 < 20) {
+				widthtable2 = $(window.parent.document).find('iframe').width() ? $(window.parent.document).find('iframe').width() : $(window).width()
+			}
+			$('.table-container').css('width', widthtable2 - indent);
+			$('.bContentTables2').each(function (i){
+				if($(this).attr('id') !== undefined){
+					var oTableID = '#' + $(this).attr('id');
+					var oTable_b = $(oTableID).dataTable();
+					if(oTable_b){oTable_b.fnAdjustColumnSizing();}
+				}
+			})
+		})
+	});
+</script>
+<!--script type='text/javascript'>
+  window.onbeforeunload = function()
+   {
+     $(window.top.document).find('#tabstrip .k-content').find('iframe').css('visibility', 'hidden');
+   }
+</script-->
+
+<!--[if lt IE 9]><script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script><![endif]-->
+<!--[if lt IE 8]><script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script><![endif]-->
+<!--[if lt IE 7]><script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script><![endif]-->
+</td></tr>
+<tr><td style="height:1px;"><iframe name="invisible" src="0.htm" width="0" height="0" application="yes" style="display:none">
+</iframe></td></tr>
+			<tr class="noLast"><td style="height:1px;">
+			<div style="display:none"></div>
+			<div style="position: absolute; left: 12.5px; top: 395px; height: 24px; width: 409px; z-index: 100; visibility: visible; pointer-events: none; border: 2px solid rgb(136, 136, 136); cursor: pointer;" id="slider" oncontextmenu="
+				var c = tableSlider.get_cell ();
+				if (!c) return;
+				var tr = c.parentNode;
+				if (!tr) return;
+				var h = tr.oncontextmenu;
+				if (!h) return;
+				return h(event);
+			"></div>
+			<div style="position: absolute; left: 421.5px; top: 419px; height: 4px; width: 4px; z-index: 101; visibility: visible; border: 1px solid rgb(136, 136, 136); background-color: white;" id="slider_"><img src="0.gif" width="4" height="4" id="slider_"></div>
+			</td></tr>
+		</tbody></table>
+
+	<div class="k-list-container k-popup k-group k-reset" id="fake_select-list" data-role="popup" style="position: absolute; height: auto; display: none; width: auto;"><ul unselectable="on" class="k-list k-reset" tabindex="-1" role="listbox" aria-hidden="true" id="fake_select_listbox" aria-live="off" style="overflow: auto;"><li tabindex="-1" role="option" unselectable="on" class="k-item k-state-selected k-state-focused" id="fake_select_option_selected" aria-selected="true">Активные</li><li tabindex="-1" role="option" unselectable="on" class="k-item">Все</li><li tabindex="-1" role="option" unselectable="on" class="k-item">Удалённые</li></ul></div><div class="k-list-container k-popup k-group k-reset" id="is_actual_select-list" data-role="popup" style="position: absolute; height: auto; display: none; width: auto;"><ul unselectable="on" class="k-list k-reset" tabindex="-1" role="listbox" aria-hidden="true" id="is_actual_select_listbox" aria-live="off" style="overflow: auto;"><li tabindex="-1" role="option" unselectable="on" class="k-item k-state-selected k-state-focused" id="is_actual_select_option_selected" aria-selected="true">Актуально</li><li tabindex="-1" role="option" unselectable="on" class="k-item">Все</li></ul></div></body></html>
