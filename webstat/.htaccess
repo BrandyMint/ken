@@ -1,6 +1,0 @@
-<Limit GET POST>
-	require valid-user
-</Limit>
-AuthType Basic
-AuthName "webstat"
-AuthUserFile /var/www/eludia/data/etc/str.eludia.webchr.ru.stat.passwd
