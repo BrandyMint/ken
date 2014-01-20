@@ -1,0 +1,46 @@
+/* Resset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend{margin: 0;padding: 0;border: 0;outline: 0;font-size: 100%;vertical-align: baseline;background: transparent;}
+body {	line-height: 1;}
+ol, ul {	list-style: none;}
+blockquote, q {	quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after {	content: '';	content: none;}
+:focus {	outline: 0;}
+ins {	text-decoration: none;}
+del {	text-decoration: line-through;}
+/* Typography */
+body {font-size: 12px;line-height: 1.7em;font-family: Helvetica,Arial, Sans-Serif;}
+form {margin: 0;padding: 0;}
+p {margin: 0 0 15px 0;}
+h1, h2, h3, h4, h5 {margin: 15px 0;line-height: 1.1em;}
+h1 {font-size: 260%;}
+h2 {font-size: 200%;}
+h2.title {font-size: 170%;font-weight: normal;}
+h3 {font-size: 175%;}
+h4 {font-size: 120%;}
+h5 {font-size: 120%;}
+a {text-decoration: none;}
+a:focus {outline: none;}
+code {margin: -1px 0 0 0;font: 10px Courier;}
+blockquote {font: italic 16px/22px Georgia, Serif;}
+
+v\\:*           { behavior: url(#default#VML); }
+#admin          { width:205px;height:25px;padding:5px 5px 5px 9px;background:url('$_REQUEST{__static_url}/menu_button.gif') no-repeat 0 0;}
+.calendar .nav  { background: transparent url($_REQUEST{__static_url}/menuarrow.gif) no-repeat 100% 100%; }
+td.main-menu    { padding-top:1px; padding-bottom:1px; background-image: url($_REQUEST{__static_url}/menu_bg.gif); cursor: pointer; }
+td.vert-menu    { background-color: #454a7c;font-family: Tahoma, 'MS Sans Serif';font-weight: normal;font-size: 8pt;color: #ffffff;text-decoration: none;padding-top:4px;padding-bottom:4px;background-image: url($_REQUEST{__static_url}/menu_bg.gif);cursor: pointer;}
+td.login-head   { background:url('$_REQUEST{__static_url}/login_title_pix.gif') repeat-x 1 1; background-color: #B9C5D7;font-size:10pt;font-weight:bold;padding:7px;}
+#touch_welt {width:100%;height:100%;}
+.touch #touch_welt { -webkit-overflow-scrolling: touch !important; overflow: scroll !important; }
+.touch { -webkit-overflow-scrolling: touch !important; overflow: scroll !important; }
+.form-active-inputs span.k-i-calendar {padding-left: 0px;}
+
+div.modal_div  > * {
+	-webkit-transform: translateZ(0px);
+}
